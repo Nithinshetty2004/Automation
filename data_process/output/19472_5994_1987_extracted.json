@@ -1,0 +1,26 @@
+{
+  "Presentation Date": "30-07-1987",
+  "Registration Date": "06-09-1987",
+  "Page No. From": "24",
+  "Page No. To": "26",
+  "Parties": [
+    {
+      "Party Type": "Executant",
+      "Name": "Prema Devi",
+      "Relation Name": "Chandra Mohan Singh"
+    },
+    {
+      "Party Type": "Claimant",
+      "Name": "Bishundev Mandal",
+      "Relation Name": "Rameshwar Mandal"
+    }
+  ],
+  "Properties": [
+    {
+      "Circle": null,
+      "Village/Thana": "Chakla Kanhwag",
+      "Khata No": "55",
+      "Khasra No": "1628"
+    }
+  ]
+}

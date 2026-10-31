@@ -145,10 +145,11 @@ def _click_pager(page, selector):
 
 
 def find_worklist_row(page, record):
-    """Search once, scan every filtered page, and return (row_locator, cells) for the single match.
+    """Search once, scan the filtered pages in order and stop at the first page with a match.
 
-    Returns (None, None) when nothing matches. Raises NavigationError when the result is
-    ambiguous or pagination misbehaves, so the caller never picks a row arbitrarily.
+    Returns (row_locator, cells), or (None, None) when nothing matches. Raises NavigationError
+    when the page holds more than one match or pagination misbehaves, so a row is never picked
+    arbitrarily. Matches on later pages are not looked for once a page has matched.
     """
     want_year = str(record["volume_year"]).strip()
     want_vol = str(record["volume_no"]).strip()
@@ -159,35 +160,34 @@ def find_worklist_row(page, record):
     _reset_search(page)
     _search_volume(page, want_vol)
 
-    matches = []  # (page_index, cells)
     page_index = 1
     while True:
+        matches = []
         for _, cells in _read_rows(page):
             if cells[2].strip() != want_year or cells[3].strip() != want_vol or cells[4].strip() != want_book:
                 continue
             office = _normalize_office(cells[1])
             ratio = SequenceMatcher(None, want_office, office).ratio()
-            log(f"Office similarity: {want_office!r} vs {office!r} = {ratio:.0%}")
+            log(f"Office similarity: {want_office!r} vs {office!r} = {ratio:.0%} (filtered page {page_index})")
             if ratio >= OFFICE_MIN_SIMILARITY:
-                matches.append((page_index, cells))
+                matches.append(cells)
+
+        if len(matches) > 1:
+            raise NavigationError(f"{len(matches)} portal rows match this volume on page {page_index}: {matches}")
+        if len(matches) == 1:
+            cells = matches[0]
+            sig = row_signature(cells)
+            candidates = [i for i, c in _read_rows(page) if row_signature(c) == sig]
+            if len(candidates) != 1:
+                raise NavigationError(
+                    f"Expected one row with signature {sig} on page {page_index}, found {len(candidates)}"
+                )
+            log(f"Unique matching volume found on filtered page {page_index}: {cells}")
+            return page.locator(ROWS_SEL).nth(candidates[0]), cells
+
         if not _click_pager(page, NEXT_SEL):
             break
         page_index += 1
 
-    if not matches:
-        log(f"No portal row matches {record['registration_office']} / {want_year} / vol {want_vol} / book {want_book}")
-        return None, None
-    if len(matches) > 1:
-        raise NavigationError(f"{len(matches)} portal rows match this volume: {[c for _, c in matches]}")
-
-    match_page, cells = matches[0]
-    for _ in range(page_index - match_page):
-        if not _click_pager(page, PREV_SEL):
-            raise NavigationError("Could not go back to the page with the matching row")
-
-    sig = row_signature(cells)
-    candidates = [i for i, c in _read_rows(page) if row_signature(c) == sig]
-    if len(candidates) != 1:
-        raise NavigationError(f"Expected one row with signature {sig} on the matched page, found {len(candidates)}")
-    log(f"Unique matching volume found on filtered page {match_page}: {cells}")
-    return page.locator(ROWS_SEL).nth(candidates[0]), cells
+    log(f"No portal row matches {record['registration_office']} / {want_year} / vol {want_vol} / book {want_book}")
+    return None, None
