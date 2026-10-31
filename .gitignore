@@ -3,4 +3,4 @@ chrome_profile/
 downloads/
 __pycache__/
 *.pyc
-returned_data/
+returned_data

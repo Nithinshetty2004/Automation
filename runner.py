@@ -1,7 +1,7 @@
 import os
 import time
 from pathlib import Path
-
+from playwright.sync_api import TimeoutError as PWTimeout
 from playwright.sync_api import sync_playwright
 
 from browser import launch_or_attach
@@ -90,17 +90,20 @@ def _reopen(page, record):
         raise NavigationError(out.reason)
     return cells
 
-def _back_to_search_index(page, record, cells):
+def _ensure_search_index(page, record, cells):
+    """After a deed: stay put if the portal is on Search Index (it reloads there after a submit).
+    Back is clicked only while the deed form is still open (failed deed). Reopen is the last resort."""
     try:
-        back = page.locator("#backbtn:visible")
-        (back.first if back.count() else page.locator("button:visible", has_text="Back").first).click()
-        page.locator("#deed_status").wait_for(state="visible", timeout=10_000)
-        if not _on_search_index(page):
-            raise RuntimeError("still not on Search Index")
-        log("Back: returned to Search Index without reopening the volume")
+        if page.locator("#addVolumeBtn").is_visible():
+            log("Deed form still open after a failed deed; using its Back button")
+            back = page.locator("#backbtn:visible")
+            (back.first if back.count() else page.locator("button:visible", has_text="Back").first).click()
+        page.locator("#deed_status").wait_for(state="visible", timeout=25_000)
+        page.locator("#addVolumeBtn").wait_for(state="hidden", timeout=10_000)
+        log("On Search Index, continuing with the next deed (no reopen)")
         return cells
-    except Exception as exc:
-        log(f"Back to Search Index failed ({exc!r}); reopening the volume from the list")
+    except PWTimeout as exc:
+        log(f"Search Index not reached ({exc.__class__.__name__}); reopening the volume from the list")
         return _reopen(page, record)
 
 def _pdf_pages(folder, meta):
@@ -247,7 +250,7 @@ def run_volume(page, state, record, sig, counters):
                 set_context(deed=out.deed)
                 counters.deeds += 1
                 counters.note(True)
-                cells = _back_to_search_index(page, record, cells)
+                cells = _ensure_search_index(page, record, cells)
                 continue
 
             set_context(deed=out.deed)
@@ -255,8 +258,7 @@ def run_volume(page, state, record, sig, counters):
             counters.deeds += 1
             counters.note(failed)
             if not _on_search_index(page):
-                cells = _back_to_search_index(page, record, cells)
-
+                cells = _ensure_search_index(page, record, cells)
     set_context(deed="")
     if set(LIST_ORDER) != {"P", "I"}:
         log(f"Partial run (LIST_ORDER={','.join(LIST_ORDER)}): final check skipped, volume NOT marked completed")
