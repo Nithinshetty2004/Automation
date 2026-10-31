@@ -1,0 +1,15 @@
+numericals are in hindi or urdu not english needs to be translated 
+after submit button it will redirect to same no need to go back again to meta data creation date 
+thana no is in hindi numerical using that we can get circle and village name 
+Portal alert: The Registration Date must be within the same year as the Volume Year.
+[00:16:40] Fill: starting deed 5971 (clear existing rows: False)
+[00:16:40] Filling Index tab...
+[00:16:42] Presentation Date: 29-07-1987
+[00:16:42] Registration Date: 24-11-1987
+[00:16:44] Instrument Type: Sale / Conveyance
+[00:16:45] Instrument Sub-Type: Sale
+[00:16:45] Page No. From: 427
+[00:16:45] Page No. To: 430
+[00:16:47] Portal alert: The Registration Date must be within the same year as the Volume Year.
+[00:16:55] Index Save: portal alert: The Registration Date must be within the same year as the Volume Year.
+[00:16:55] Deed 5971 failed: RuntimeError("Index Save: no 'saved successfully' alert was seen, so the save is unconfirmed")

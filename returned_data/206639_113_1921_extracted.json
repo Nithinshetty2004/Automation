@@ -1,0 +1,26 @@
+{
+  "Presentation Date": "07-01-1921",
+  "Registration Date": "07-01-1921",
+  "Page No. From": "276",
+  "Page No. To": "277",
+  "Parties": [
+    {
+      "Party Type": "Executant",
+      "Name": "Motilal",
+      "Relation Name": "Shiva Dayal"
+    },
+    {
+      "Party Type": "Claimant",
+      "Name": "Dhanik Lal",
+      "Relation Name": "Shiva Dayal"
+    }
+  ],
+  "Properties": [
+    {
+      "Circle": "Champan",
+      "Village/Thana": "Bettiah",
+      "Khata No": "34",
+      "Khasra No": "263"
+    }
+  ]
+}

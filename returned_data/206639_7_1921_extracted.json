@@ -1,0 +1,26 @@
+{
+  "Presentation Date": "17-01-1921",
+  "Registration Date": "03-02-1921",
+  "Page No. From": "249",
+  "Page No. To": "250",
+  "Parties": [
+    {
+      "Party Type": "Executant",
+      "Name": "Balkishun Prasad",
+      "Relation Name": "Prasad"
+    },
+    {
+      "Party Type": "Claimant",
+      "Name": "Palak Sahu",
+      "Relation Name": "Sahu"
+    }
+  ],
+  "Properties": [
+    {
+      "Circle": "Bettiah",
+      "Village/Thana": "Bettiah",
+      "Khata No": "28",
+      "Khasra No": "19"
+    }
+  ]
+}

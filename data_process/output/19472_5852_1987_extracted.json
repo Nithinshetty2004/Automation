@@ -1,0 +1,26 @@
+{
+  "Presentation Date": "25-03-1987",
+  "Registration Date": "21-01-1989",
+  "Page No. From": "886",
+  "Page No. To": "888",
+  "Parties": [
+    {
+      "Party Type": "Executant",
+      "Name": "Dhaneshwar Mukhiya",
+      "Relation Name": "Hira Lal Mukhiya"
+    },
+    {
+      "Party Type": "Claimant",
+      "Name": "Bhagwati Devi",
+      "Relation Name": "Bindeshwari Prasad Yadav"
+    }
+  ],
+  "Properties": [
+    {
+      "Circle": "Raniganj",
+      "Village/Thana": "Haripur Kala",
+      "Khata No": "12",
+      "Khasra No": "963"
+    }
+  ]
+}

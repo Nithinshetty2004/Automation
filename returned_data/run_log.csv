@@ -1,0 +1,609 @@
+﻿timestamp,run_id,volume,deed,step,message
+2026-10-30 17:45:52,20261030_174551,,,Loaded 1946 volume,"Loaded 1946 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 17:45:52,20261030_174551,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 17:45:52,20261030_174551,,,Run settings,Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=0 MAX_VOLUMES=0 MAX_FAILURES=3 LIST_ORDER=I
+2026-10-30 17:45:54,20261030_174551,,,Chrome launched,Chrome launched
+2026-10-30 17:45:57,20261030_174551,,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-30 17:46:05,20261030_174551,,,Login successful,Login successful
+2026-10-30 17:46:05,20261030_174551,bettiah|1921|1|1,,=== Volume bettiah|1921|1|1,=== Volume bettiah|1921|1|1 ===
+2026-10-30 17:46:07,20261030_174551,bettiah|1921|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 17:46:08,20261030_174551,bettiah|1921|1|1,,Search filters reset,Search filters reset
+2026-10-30 17:46:08,20261030_174551,bettiah|1921|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 17:46:09,20261030_174551,bettiah|1921|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bettiah' = 100%
+2026-10-30 17:46:12,20261030_174551,bettiah|1921|1|1,,Unique matching volume,"Unique matching volume found on filtered page 3: ['23', 'Bettiah (4700)', '1921', '1', '1', 'No', 'Uttam kumar', 'New']"
+2026-10-30 17:46:15,20261030_174551,bettiah|1921|1|1,,Process,Process: Search Index page opened in 2.8s
+2026-10-30 17:46:35,20261030_174551,bettiah|1921|1|1,,In-Progress list FAILED,In-Progress list FAILED: In-Progress list did not load (timeout)
+2026-10-30 17:46:35,20261030_174551,bettiah|1921|1|1,,Volume parked as needs_review,Volume parked as needs_review: In-Progress list: In-Progress list did not load (timeout)
+2026-10-30 17:46:35,20261030_174551,bettiah|1922|1|1,,=== Volume bettiah|1922|1|1,=== Volume bettiah|1922|1|1 ===
+2026-10-30 17:46:38,20261030_174551,bettiah|1922|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 17:46:39,20261030_174551,bettiah|1922|1|1,,Search filters reset,Search filters reset
+2026-10-30 17:46:39,20261030_174551,bettiah|1922|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 17:46:40,20261030_174551,bettiah|1922|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bettiah' = 100%
+2026-10-30 17:46:41,20261030_174551,bettiah|1922|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bagaha' = 46%
+2026-10-30 17:46:43,20261030_174551,bettiah|1922|1|1,,Unique matching volume,"Unique matching volume found on filtered page 3: ['24', 'Bettiah (4700)', '1922', '1', '1', 'No', 'ARYAN RAJ', 'New']"
+2026-10-30 17:46:45,20261030_174551,bettiah|1922|1|1,,Process,Process: Search Index page opened in 1.6s
+2026-10-30 17:46:48,20261030_174551,bettiah|1922|1|1,,Deed outcomes,"Deed outcomes: none | Volume outcomes: in_progress=1, needs_review=1"
+2026-10-30 17:55:18,20261030_175517,,,Loaded 1946 volume,"Loaded 1946 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 17:55:18,20261030_175517,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 17:55:18,20261030_175517,,,Run settings,Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=0 MAX_VOLUMES=0 MAX_FAILURES=3 LIST_ORDER=I
+2026-10-30 17:55:18,20261030_175517,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-30 17:55:18,20261030_175517,,,Already logged in,Already logged in
+2026-10-30 17:55:18,20261030_175517,bettiah|1922|1|1,,=== Volume bettiah|1922|1|1,=== Volume bettiah|1922|1|1 ===
+2026-10-30 17:55:22,20261030_175517,bettiah|1922|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 17:55:23,20261030_175517,bettiah|1922|1|1,,Search filters reset,Search filters reset
+2026-10-30 17:55:23,20261030_175517,bettiah|1922|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 17:55:24,20261030_175517,bettiah|1922|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bettiah' = 100%
+2026-10-30 17:55:25,20261030_175517,bettiah|1922|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bagaha' = 46%
+2026-10-30 17:55:27,20261030_175517,bettiah|1922|1|1,,Unique matching volume,"Unique matching volume found on filtered page 3: ['24', 'Bettiah (4700)', '1922', '1', '1', 'No', 'ARYAN RAJ', 'New']"
+2026-10-30 17:55:27,20261030_175517,bettiah|1922|1|1,,Process,Process: Search Index page opened in 0.6s
+2026-10-30 17:55:28,20261030_175517,bettiah|1922|1|1,,In-Progress list loaded,In-Progress list loaded: 0 deed(s) in 1.3s; ascending: []
+2026-10-30 17:55:28,20261030_175517,bettiah|1922|1|1,,In-Progress list is,"In-Progress list is empty, moving on"
+2026-10-30 17:55:28,20261030_175517,bettiah|1922|1|1,,Partial run (LIST_ORDER=I),"Partial run (LIST_ORDER=I): final check skipped, volume NOT marked completed"
+2026-10-30 17:55:28,20261030_175517,bettiah|1922|1|4,,=== Volume bettiah|1922|1|4,=== Volume bettiah|1922|1|4 ===
+2026-10-30 17:55:33,20261030_175517,bettiah|1922|1|4,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 17:55:33,20261030_175517,bettiah|1922|1|4,,Search filters reset,Search filters reset
+2026-10-30 17:55:33,20261030_175517,bettiah|1922|1|4,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 17:55:36,20261030_175517,bettiah|1922|1|4,,No portal row,No portal row matches Bettiah / 1922 / vol 1 / book 4
+2026-10-30 17:55:36,20261030_175517,bettiah|1922|1|4,,Volume parked as needs_review,Volume parked as needs_review: no matching row in the portal list
+2026-10-30 17:55:36,20261030_175517,bettiah|1923|1|1,,=== Volume bettiah|1923|1|1,=== Volume bettiah|1923|1|1 ===
+2026-10-30 17:55:36,20261030_175517,bettiah|1923|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 17:55:39,20261030_175517,bettiah|1923|1|1,,Search filters reset,Search filters reset
+2026-10-30 17:55:39,20261030_175517,bettiah|1923|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 17:55:40,20261030_175517,bettiah|1923|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bettiah' = 100%
+2026-10-30 17:55:42,20261030_175517,bettiah|1923|1|1,,Unique matching volume,"Unique matching volume found on filtered page 4: ['39', 'Bettiah (4700)', '1923', '1', '1', 'No', 'Uttam kumar', 'New']"
+2026-10-30 17:55:44,20261030_175517,bettiah|1923|1|1,,Process,Process: Search Index page opened in 2.2s
+2026-10-30 17:55:46,20261030_175517,bettiah|1923|1|1,,In-Progress list loaded,In-Progress list loaded: 0 deed(s) in 2.2s; ascending: []
+2026-10-30 17:55:46,20261030_175517,bettiah|1923|1|1,,In-Progress list is,"In-Progress list is empty, moving on"
+2026-10-30 17:55:46,20261030_175517,bettiah|1923|1|1,,Partial run (LIST_ORDER=I),"Partial run (LIST_ORDER=I): final check skipped, volume NOT marked completed"
+2026-10-30 17:55:46,20261030_175517,bettiah|1924|1|1,,=== Volume bettiah|1924|1|1,=== Volume bettiah|1924|1|1 ===
+2026-10-30 17:55:50,20261030_175517,bettiah|1924|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 17:55:50,20261030_175517,bettiah|1924|1|1,,Search filters reset,Search filters reset
+2026-10-30 17:55:51,20261030_175517,bettiah|1924|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 17:55:52,20261030_175517,bettiah|1924|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bagaha' = 46%
+2026-10-30 17:55:52,20261030_175517,bettiah|1924|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bettiah' = 100%
+2026-10-30 17:55:54,20261030_175517,bettiah|1924|1|1,,Unique matching volume,"Unique matching volume found on filtered page 5: ['49', 'Bettiah (4700)', '1924', '1', '1', 'No', 'MD Shahid Ansari', 'New']"
+2026-10-30 17:55:55,20261030_175517,bettiah|1924|1|1,,Process,Process: Search Index page opened in 1.7s
+2026-10-30 17:55:58,20261030_175517,bettiah|1924|1|1,,In-Progress list loaded,In-Progress list loaded: 0 deed(s) in 2.5s; ascending: []
+2026-10-30 17:55:58,20261030_175517,bettiah|1924|1|1,,In-Progress list is,"In-Progress list is empty, moving on"
+2026-10-30 17:55:58,20261030_175517,bettiah|1924|1|1,,Partial run (LIST_ORDER=I),"Partial run (LIST_ORDER=I): final check skipped, volume NOT marked completed"
+2026-10-30 17:55:58,20261030_175517,bettiah|1925|1|1,,=== Volume bettiah|1925|1|1,=== Volume bettiah|1925|1|1 ===
+2026-10-30 17:56:03,20261030_175517,bettiah|1925|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 17:56:03,20261030_175517,bettiah|1925|1|1,,Search filters reset,Search filters reset
+2026-10-30 17:56:04,20261030_175517,bettiah|1925|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 17:56:04,20261030_175517,bettiah|1925|1|1,,Deed outcomes,"Deed outcomes: none | Volume outcomes: needs_review=2, paused=3"
+2026-10-30 18:12:53,20261030_181252,,,Loaded 1946 volume,"Loaded 1946 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 18:12:53,20261030_181252,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 18:12:53,20261030_181252,,,Run settings,Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=0 MAX_VOLUMES=1 MAX_FAILURES=3 LIST_ORDER=I
+2026-10-30 18:12:53,20261030_181252,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-30 18:12:53,20261030_181252,,,Already logged in,Already logged in
+2026-10-30 18:12:53,20261030_181252,bettiah|1921|1|1,,=== Volume bettiah|1921|1|1,=== Volume bettiah|1921|1|1 ===
+2026-10-30 18:13:25,20261030_181252,bettiah|1921|1|1,,Session lost. Logging,Session lost. Logging in again and retrying this volume.
+2026-10-30 18:13:27,20261030_181252,bettiah|1921|1|1,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-30 18:13:46,20261030_181252,bettiah|1921|1|1,,Login successful,Login successful
+2026-10-30 18:13:49,20261030_181252,bettiah|1921|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 18:13:50,20261030_181252,bettiah|1921|1|1,,Search filters reset,Search filters reset
+2026-10-30 18:13:50,20261030_181252,bettiah|1921|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 18:13:50,20261030_181252,bettiah|1921|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bettiah' = 100%
+2026-10-30 18:13:51,20261030_181252,bettiah|1921|1|1,,Portal alert,Portal alert: Something went wrong. Please try again.
+2026-10-30 18:14:01,20261030_181252,bettiah|1921|1|1,,Volume failed,Volume failed: NavigationError('Pagination did not move after clicking it')
+2026-10-30 18:14:01,20261030_181252,bettiah|1921|1|1,,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-30 18:14:01,20261030_181252,bettiah|1921|1|1,,Volume parked as needs_review,Volume parked as needs_review: volume failed: NavigationError('Pagination did not move after clicking it')
+2026-10-30 18:14:01,20261030_181252,bettiah|1921|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 18:14:01,20261030_181252,,,Volume limit reached.,Volume limit reached.
+2026-10-30 18:14:01,20261030_181252,,,Deed outcomes,"Deed outcomes: none | Volume outcomes: needs_review=2, paused=3"
+2026-10-30 18:17:50,20261030_181750,,,Loaded 1946 volume,"Loaded 1946 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 18:17:50,20261030_181750,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 18:17:50,20261030_181750,,,Run settings,Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=0 MAX_VOLUMES=1 MAX_FAILURES=3 LIST_ORDER=I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop
+2026-10-30 18:17:51,20261030_181750,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-30 18:17:51,20261030_181750,,,Already logged in,Already logged in
+2026-10-30 18:17:51,20261030_181750,bettiah|1921|1|1,,=== Volume bettiah|1921|1|1,=== Volume bettiah|1921|1|1 ===
+2026-10-30 18:17:51,20261030_181750,bettiah|1921|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 18:18:10,20261030_181750,bettiah|1921|1|1,,Deed outcomes,"Deed outcomes: none | Volume outcomes: needs_review=2, paused=3"
+2026-10-30 18:18:23,20261030_181822,,,Loaded 1946 volume,"Loaded 1946 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 18:18:23,20261030_181822,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 18:18:23,20261030_181822,,,Run settings,Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=0 MAX_VOLUMES=1 MAX_FAILURES=3 LIST_ORDER=I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop
+2026-10-30 18:18:25,20261030_181822,,,Chrome launched,Chrome launched
+2026-10-30 18:18:28,20261030_181822,,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-30 18:18:35,20261030_181822,,,Login successful,Login successful
+2026-10-30 18:18:35,20261030_181822,bettiah|1921|1|1,,=== Volume bettiah|1921|1|1,=== Volume bettiah|1921|1|1 ===
+2026-10-30 18:18:38,20261030_181822,bettiah|1921|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 18:18:38,20261030_181822,bettiah|1921|1|1,,Search filters reset,Search filters reset
+2026-10-30 18:18:38,20261030_181822,bettiah|1921|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 18:18:39,20261030_181822,bettiah|1921|1|1,,Office similarity,Office similarity: 'bettiah' vs 'bettiah' = 100%
+2026-10-30 18:18:42,20261030_181822,bettiah|1921|1|1,,Unique matching volume,"Unique matching volume found on filtered page 3: ['23', 'Bettiah (4700)', '1921', '1', '1', 'No', 'Uttam kumar', 'New']"
+2026-10-30 18:18:45,20261030_181822,bettiah|1921|1|1,,Process,Process: Search Index page opened in 3.3s
+2026-10-30 18:18:47,20261030_181822,bettiah|1921|1|1,,In-Progress list loaded,In-Progress list loaded: 1 deed(s) in 2.1s; ascending: ['7']
+2026-10-30 18:18:47,20261030_181822,bettiah|1921|1|1,,Next deed,Next deed: 7 (In-Progress)
+2026-10-30 18:18:48,20261030_181822,bettiah|1921|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 0.2s
+2026-10-30 18:18:48,20261030_181822,bettiah|1921|1|1,,Deed selected,"Deed selected: {'doct_no': 7, 'volume_id': '206639'}"
+2026-10-30 18:18:48,20261030_181822,bettiah|1921|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1921, 'wf_status': 'IN_PROGRESS'}]"
+2026-10-30 18:18:48,20261030_181822,bettiah|1921|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 0.7s
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 906,900 -> 584,836 bytes"
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,,PDF saved,PDF saved: downloads\deed_7_1921_vol206639\206639_7_1921.pdf (584836 bytes)
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,,Download complete,Download complete: downloads\deed_7_1921_vol206639 (select + fetch + save took 3.2s)
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Extraction,Extraction: using existing JSON for deed 7
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Pages,Pages: deed 7 read as 249-250; ranges already used in this volume: []
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Pages,"Pages: no overlap, using 249-250"
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Fill,Fill: starting deed 7 (clear existing rows: True)
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Party,Party: no saved rows to delete
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Property,Property: no saved rows to delete
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Filling Index tab...,Filling Index tab...
+2026-10-30 18:18:51,20261030_181822,bettiah|1921|1|1,7,Presentation Date,Presentation Date: 17-01-1921
+2026-10-30 18:18:52,20261030_181822,bettiah|1921|1|1,7,Registration Date,Registration Date: 03-02-1921
+2026-10-30 18:18:53,20261030_181822,bettiah|1921|1|1,7,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-30 18:18:54,20261030_181822,bettiah|1921|1|1,7,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-30 18:18:54,20261030_181822,bettiah|1921|1|1,7,Page No. From,Page No. From: 249
+2026-10-30 18:18:54,20261030_181822,bettiah|1921|1|1,7,Page No. To,Page No. To: 250
+2026-10-30 18:18:54,20261030_181822,bettiah|1921|1|1,7,Portal alert,Portal alert: Meta Data Details saved successfully.
+2026-10-30 18:18:54,20261030_181822,bettiah|1921|1|1,7,Index Save,Index Save: POST https://enibandhan.bihar.gov.in/digitization/meta-data/v1/request/save -> 200
+2026-10-30 18:18:54,20261030_181822,bettiah|1921|1|1,7,Index Save,Index Save: portal alert: Meta Data Details saved successfully.
+2026-10-30 18:18:54,20261030_181822,bettiah|1921|1|1,7,Filling Party tab...,Filling Party tab...
+2026-10-30 18:18:55,20261030_181822,bettiah|1921|1|1,7,Party Type,Party Type: 'Executant' mapped by alias to 'Executant'
+2026-10-30 18:18:55,20261030_181822,bettiah|1921|1|1,7,Party Type,Party Type: Executant
+2026-10-30 18:18:55,20261030_181822,bettiah|1921|1|1,7,Party Name,Party Name: Balkishun Prasad
+2026-10-30 18:18:55,20261030_181822,bettiah|1921|1|1,7,Relation Name,Relation Name: Prasad
+2026-10-30 18:19:01,20261030_181822,bettiah|1921|1|1,7,Party 1/2 verified,Party 1/2 verified: Executant Balkishun Prasad
+2026-10-30 18:19:01,20261030_181822,bettiah|1921|1|1,7,Party Type,Party Type: 'Claimant' mapped by alias to 'Claimant'
+2026-10-30 18:19:01,20261030_181822,bettiah|1921|1|1,7,Party Type,Party Type: Claimant
+2026-10-30 18:19:01,20261030_181822,bettiah|1921|1|1,7,Party Name,Party Name: Palak Sahu
+2026-10-30 18:19:01,20261030_181822,bettiah|1921|1|1,7,Relation Name,Relation Name: Sahu
+2026-10-30 18:19:06,20261030_181822,bettiah|1921|1|1,7,Party 2/2 verified,Party 2/2 verified: Claimant Palak Sahu
+2026-10-30 18:19:06,20261030_181822,bettiah|1921|1|1,7,Filling Property tab...,Filling Property tab...
+2026-10-30 18:19:07,20261030_181822,bettiah|1921|1|1,7,Volume Details -> District,"Volume Details -> District: 'Bettiah', Registration Office: 'Bettiah'"
+2026-10-30 18:19:08,20261030_181822,bettiah|1921|1|1,7,Property District,Property District: selected 'Bettiah' (hidden id: 47)
+2026-10-30 18:19:11,20261030_181822,bettiah|1921|1|1,7,Property Registration Office,Property Registration Office: selected 'Bettiah (4700)' (hidden id: 4700)
+2026-10-30 18:19:12,20261030_181822,bettiah|1921|1|1,7,Property Circle,Property Circle: typing full name 'Bettiah'...
+2026-10-30 18:19:13,20261030_181822,bettiah|1921|1|1,7,Property Circle,Property Circle: selected 'Bettiah (Bettiah)' (hidden id: 739)
+2026-10-30 18:19:14,20261030_181822,bettiah|1921|1|1,7,Property Village/Thana,Property Village/Thana: typing full name 'Bettiah'...
+2026-10-30 18:19:15,20261030_181822,bettiah|1921|1|1,7,Property Village/Thana,"Property Village/Thana: options ['128-Bettiah Diha (C-Chn,Na-Be) (128)']; closest to 'Bettiah' is '128-Bettiah Diha (C-Chn,Na-Be) (128)'"
+2026-10-30 18:19:16,20261030_181822,bettiah|1921|1|1,7,Property Village/Thana,"Property Village/Thana: selected '128-Bettiah Diha (C-Chn,Na-Be) (128)' (hidden id: 66067)"
+2026-10-30 18:19:16,20261030_181822,bettiah|1921|1|1,7,Khata No.,Khata No.: 28
+2026-10-30 18:19:16,20261030_181822,bettiah|1921|1|1,7,Khasra No.,Khasra No.: 19
+2026-10-30 18:19:16,20261030_181822,bettiah|1921|1|1,7,Property 1 fields,Property 1 fields: POST https://enibandhan.bihar.gov.in/user/v2/village/listv2 -> 200
+2026-10-30 18:19:21,20261030_181822,bettiah|1921|1|1,7,Property 1/1 verified,"Property 1/1 verified: Khata 28, Khasra 19"
+2026-10-30 18:19:21,20261030_181822,bettiah|1921|1|1,7,Fill,"Fill: finished in 30.7s, review notes: [""Property Village/Thana: no option equals 'Bettiah', took closest '128-Bettiah Diha (C-Chn,Na-Be) (128)'""]"
+2026-10-30 18:19:21,20261030_181822,bettiah|1921|1|1,7,Submit,Submit: starting deed 7
+2026-10-30 18:19:21,20261030_181822,bettiah|1921|1|1,7,Portal alert,Portal alert: Do you want to proceed further?
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Portal alert,Portal alert: Meta Data has been created successfully.
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Submit,Submit: POST https://enibandhan.bihar.gov.in/digitization/meta-data/v1/request/create -> 200
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Submit,Submit: POST https://enibandhan.bihar.gov.in/digitization/meta-data/v1/deed/check/206639 -> 200
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Submit,Submit: portal alert: Do you want to proceed further?
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Submit,Submit: portal alert: Meta Data has been created successfully.
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Submit confirmed,Submit confirmed: created successfully and back on Search Index
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Submit,Submit: finished in 1.0s
+2026-10-30 18:19:22,20261030_181822,bettiah|1921|1|1,7,Deed summary,"Deed summary: deed=7 list=In-Progress pages=249-250 review_notes=[""Property Village/Thana: no option equals 'Bettiah', took closest '128-Bettiah Diha (C-Chn,Na-Be) (128)'""] outcome=submitted seconds=31.7"
+2026-10-30 18:19:24,20261030_181822,bettiah|1921|1|1,,In-Progress list loaded,In-Progress list loaded: 0 deed(s) in 1.3s; ascending: []
+2026-10-30 18:19:24,20261030_181822,bettiah|1921|1|1,,In-Progress list is,"In-Progress list is empty, moving on"
+2026-10-30 18:19:24,20261030_181822,bettiah|1921|1|1,,Partial run (LIST_ORDER=I),"Partial run (LIST_ORDER=I): final check skipped, volume NOT marked completed"
+2026-10-30 18:19:24,20261030_181822,,,Volume limit reached.,Volume limit reached.
+2026-10-30 18:19:24,20261030_181822,,,Deed outcomes,"Deed outcomes: submitted=1 | Volume outcomes: needs_review=1, paused=4"
+2026-10-30 23:44:02,20261030_234401,,,Header row detected,Header row detected at Excel row 1.
+2026-10-30 23:44:03,20261030_234401,,,WARNING,"WARNING: duplicate volume in worklist: Excel rows 2871 and 3393 -> ('shikarpur', '1948', '1', '1')"
+2026-10-30 23:44:03,20261030_234401,,,WARNING,"WARNING: duplicate volume in worklist: Excel rows 2870 and 4414 -> ('shikarpur', '1947', '2', '1')"
+2026-10-30 23:44:03,20261030_234401,,,Loaded 4547 volume,"Loaded 4547 volume records from worklist.xlsx, worksheet 'Volume List'."
+2026-10-30 23:44:03,20261030_234401,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 23:44:03,20261030_234401,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=1 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-30 23:44:06,20261030_234401,,,Chrome launched,Chrome launched
+2026-10-30 23:44:10,20261030_234401,,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-30 23:44:18,20261030_234401,,,Login successful,Login successful
+2026-10-30 23:44:18,20261030_234401,bagaha|1917|1|3,,=== Volume bagaha|1917|1|3,=== Volume bagaha|1917|1|3 ===
+2026-10-30 23:44:24,20261030_234401,bagaha|1917|1|3,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:44:25,20261030_234401,bagaha|1917|1|3,,Search filters reset,Search filters reset
+2026-10-30 23:44:25,20261030_234401,bagaha|1917|1|3,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:44:27,20261030_234401,bagaha|1917|1|3,,No portal row,No portal row matches Bagaha / 1917 / vol 1 / book 3
+2026-10-30 23:44:27,20261030_234401,bagaha|1917|1|3,,Volume attempt 1/2 failed,Volume attempt 1/2 failed: VolumeRetry('no matching row in the portal list')
+2026-10-30 23:44:27,20261030_234401,bagaha|1917|1|3,,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-30 23:44:32,20261030_234401,bagaha|1917|1|3,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:44:32,20261030_234401,bagaha|1917|1|3,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:44:40,20261030_234401,bagaha|1917|1|3,,Search filters reset,Search filters reset
+2026-10-30 23:44:41,20261030_234401,bagaha|1917|1|3,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:44:42,20261030_234401,bagaha|1917|1|3,,No portal row,No portal row matches Bagaha / 1917 / vol 1 / book 3
+2026-10-30 23:44:42,20261030_234401,bagaha|1917|1|3,,Volume attempt 2/2 failed,Volume attempt 2/2 failed: VolumeRetry('no matching row in the portal list')
+2026-10-30 23:44:42,20261030_234401,bagaha|1917|1|3,,Volume parked as needs_review,Volume parked as needs_review: no matching row in the portal list
+2026-10-30 23:44:42,20261030_234401,,,Volume limit reached.,Volume limit reached.
+2026-10-30 23:44:42,20261030_234401,,,Deed outcomes,"Deed outcomes: submitted=1 | Volume outcomes: needs_review=2, paused=4"
+2026-10-30 23:46:50,20261030_234650,,,Header row detected,Header row detected at Excel row 1.
+2026-10-30 23:46:51,20261030_234650,,,WARNING,"WARNING: duplicate volume in worklist: Excel rows 2871 and 3393 -> ('shikarpur', '1948', '1', '1')"
+2026-10-30 23:46:51,20261030_234650,,,WARNING,"WARNING: duplicate volume in worklist: Excel rows 2870 and 4414 -> ('shikarpur', '1947', '2', '1')"
+2026-10-30 23:46:51,20261030_234650,,,Loaded 4547 volume,"Loaded 4547 volume records from worklist.xlsx, worksheet 'Volume List'."
+2026-10-30 23:46:51,20261030_234650,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 23:46:51,20261030_234650,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=1 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-30 23:46:52,20261030_234650,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-30 23:46:52,20261030_234650,,,Already logged in,Already logged in
+2026-10-30 23:46:52,20261030_234650,bagaha|1917|1|3,,=== Volume bagaha|1917|1|3,=== Volume bagaha|1917|1|3 ===
+2026-10-30 23:46:52,20261030_234650,bagaha|1917|1|3,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:46:54,20261030_234650,bagaha|1917|1|3,,Deed outcomes,"Deed outcomes: submitted=1 | Volume outcomes: needs_review=2, paused=4"
+2026-10-30 23:51:43,20261030_235143,,,Header row detected,Header row detected at Excel row 1.
+2026-10-30 23:51:43,20261030_235143,,,NOTE,NOTE: 'Book No.' column not found; book_no will be empty for all records.
+2026-10-30 23:51:43,20261030_235143,,,Loaded 32 volume,"Loaded 32 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 23:51:43,20261030_235143,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 23:51:43,20261030_235143,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=1 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-30 23:51:44,20261030_235143,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-30 23:51:48,20261030_235143,,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-30 23:51:59,20261030_235143,,,Login successful,Login successful
+2026-10-30 23:51:59,20261030_235143,dhamdaha|1989|1|,,=== Volume dhamdaha|1989|1|,=== Volume dhamdaha|1989|1| ===
+2026-10-30 23:52:06,20261030_235143,dhamdaha|1989|1|,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:52:06,20261030_235143,dhamdaha|1989|1|,,Search filters reset,Search filters reset
+2026-10-30 23:52:07,20261030_235143,dhamdaha|1989|1|,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:52:08,20261030_235143,dhamdaha|1989|1|,,No portal row,No portal row matches Dhamdaha / 1989 / vol 1 / book 
+2026-10-30 23:52:08,20261030_235143,dhamdaha|1989|1|,,Volume attempt 1/2 failed,Volume attempt 1/2 failed: VolumeRetry('no matching row in the portal list')
+2026-10-30 23:52:09,20261030_235143,dhamdaha|1989|1|,,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-30 23:52:14,20261030_235143,dhamdaha|1989|1|,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:52:14,20261030_235143,dhamdaha|1989|1|,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:52:21,20261030_235143,dhamdaha|1989|1|,,Search filters reset,Search filters reset
+2026-10-30 23:52:22,20261030_235143,dhamdaha|1989|1|,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:52:23,20261030_235143,dhamdaha|1989|1|,,No portal row,No portal row matches Dhamdaha / 1989 / vol 1 / book 
+2026-10-30 23:52:23,20261030_235143,dhamdaha|1989|1|,,Volume attempt 2/2 failed,Volume attempt 2/2 failed: VolumeRetry('no matching row in the portal list')
+2026-10-30 23:52:23,20261030_235143,dhamdaha|1989|1|,,Volume parked as needs_review,Volume parked as needs_review: no matching row in the portal list
+2026-10-30 23:52:23,20261030_235143,,,Volume limit reached.,Volume limit reached.
+2026-10-30 23:52:23,20261030_235143,,,Deed outcomes,"Deed outcomes: submitted=1 | Volume outcomes: needs_review=3, paused=4"
+2026-10-30 23:54:20,20261030_235419,,,Header row detected,Header row detected at Excel row 1.
+2026-10-30 23:54:20,20261030_235419,,,NOTE,NOTE: 'Book No.' column not found; book_no will be empty for all records.
+2026-10-30 23:54:20,20261030_235419,,,Loaded 32 volume,"Loaded 32 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 23:54:20,20261030_235419,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 23:54:20,20261030_235419,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=3 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-30 23:54:21,20261030_235419,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-30 23:54:21,20261030_235419,,,Already logged in,Already logged in
+2026-10-30 23:54:21,20261030_235419,dhamdaha|1989|1|,,=== Volume dhamdaha|1989|1|,=== Volume dhamdaha|1989|1| ===
+2026-10-30 23:54:21,20261030_235419,dhamdaha|1989|1|,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:54:29,20261030_235419,dhamdaha|1989|1|,,Search filters reset,Search filters reset
+2026-10-30 23:54:29,20261030_235419,dhamdaha|1989|1|,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:54:31,20261030_235419,dhamdaha|1989|1|,,No portal row,No portal row matches Dhamdaha / 1989 / vol 1 / book 
+2026-10-30 23:54:31,20261030_235419,dhamdaha|1989|1|,,Volume attempt 1/2 failed,Volume attempt 1/2 failed: VolumeRetry('no matching row in the portal list')
+2026-10-30 23:54:31,20261030_235419,dhamdaha|1989|1|,,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-30 23:54:36,20261030_235419,dhamdaha|1989|1|,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:54:36,20261030_235419,dhamdaha|1989|1|,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:54:44,20261030_235419,dhamdaha|1989|1|,,Search filters reset,Search filters reset
+2026-10-30 23:54:44,20261030_235419,dhamdaha|1989|1|,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:54:45,20261030_235419,dhamdaha|1989|1|,,No portal row,No portal row matches Dhamdaha / 1989 / vol 1 / book 
+2026-10-30 23:54:46,20261030_235419,dhamdaha|1989|1|,,Volume attempt 2/2 failed,Volume attempt 2/2 failed: VolumeRetry('no matching row in the portal list')
+2026-10-30 23:54:46,20261030_235419,dhamdaha|1989|1|,,Volume parked as needs_review,Volume parked as needs_review: no matching row in the portal list
+2026-10-30 23:54:46,20261030_235419,purnea sadar|1989|1|,,=== Volume purnea,=== Volume purnea sadar|1989|1| ===
+2026-10-30 23:54:46,20261030_235419,purnea sadar|1989|1|,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:54:53,20261030_235419,purnea sadar|1989|1|,,Search filters reset,Search filters reset
+2026-10-30 23:54:53,20261030_235419,purnea sadar|1989|1|,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:54:55,20261030_235419,purnea sadar|1989|1|,,No portal row,No portal row matches Purnea Sadar / 1989 / vol 1 / book 
+2026-10-30 23:54:55,20261030_235419,purnea sadar|1989|1|,,Volume attempt 1/2 failed,Volume attempt 1/2 failed: VolumeRetry('no matching row in the portal list')
+2026-10-30 23:54:55,20261030_235419,purnea sadar|1989|1|,,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-30 23:55:00,20261030_235419,purnea sadar|1989|1|,,Deed outcomes,"Deed outcomes: submitted=1 | Volume outcomes: needs_review=3, paused=4"
+2026-10-30 23:58:44,20261030_235843,,,Header row detected,Header row detected at Excel row 1.
+2026-10-30 23:58:44,20261030_235843,,,Loaded 32 volume,"Loaded 32 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-30 23:58:44,20261030_235843,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-30 23:58:44,20261030_235843,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=3 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-30 23:58:45,20261030_235843,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-30 23:58:45,20261030_235843,,,Already logged in,Already logged in
+2026-10-30 23:58:45,20261030_235843,dhamdaha|1989|1|1,,=== Volume dhamdaha|1989|1|1,=== Volume dhamdaha|1989|1|1 ===
+2026-10-30 23:58:46,20261030_235843,dhamdaha|1989|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:58:54,20261030_235843,dhamdaha|1989|1|1,,Search filters reset,Search filters reset
+2026-10-30 23:59:24,20261030_235843,dhamdaha|1989|1|1,,Session lost. Logging,Session lost. Logging in again and retrying this volume.
+2026-10-30 23:59:27,20261030_235843,dhamdaha|1989|1|1,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-30 23:59:36,20261030_235843,dhamdaha|1989|1|1,,Login successful,Login successful
+2026-10-30 23:59:43,20261030_235843,dhamdaha|1989|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-30 23:59:44,20261030_235843,dhamdaha|1989|1|1,,Search filters reset,Search filters reset
+2026-10-30 23:59:44,20261030_235843,dhamdaha|1989|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-30 23:59:44,20261030_235843,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'dhamdaha' = 100%
+2026-10-30 23:59:44,20261030_235843,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'purnea sadar' = 30%
+2026-10-30 23:59:47,20261030_235843,dhamdaha|1989|1|1,,Unique matching volume,"Unique matching volume found on filtered page 1: ['1', 'Dhamdaha (3902)', '1989', '1', '1', 'No', 'NABAKUMAR MAITY', 'New']"
+2026-10-30 23:59:49,20261030_235843,dhamdaha|1989|1|1,,Process,Process: Search Index page opened in 2.0s
+2026-10-30 23:59:52,20261030_235843,dhamdaha|1989|1|1,,Pending list loaded,"Pending list loaded: 8 deed(s) in 2.8s; ascending: ['5852', '5970', '5971', '5994', '5997', '6018', '6059', '6989']"
+2026-10-30 23:59:52,20261030_235843,dhamdaha|1989|1|1,,Next deed,Next deed: 5852 (Pending)
+2026-10-30 23:59:52,20261030_235843,dhamdaha|1989|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 0.2s
+2026-10-30 23:59:52,20261030_235843,dhamdaha|1989|1|1,,Deed selected,"Deed selected: {'doct_no': 5852, 'volume_id': '19472'}"
+2026-10-30 23:59:52,20261030_235843,dhamdaha|1989|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1987, 'wf_status': ''}]"
+2026-10-30 23:59:53,20261030_235843,dhamdaha|1989|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 0.5s
+2026-10-30 23:59:57,20261030_235843,dhamdaha|1989|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 1,644,164 -> 1,047,948 bytes"
+2026-10-30 23:59:57,20261030_235843,dhamdaha|1989|1|1,,PDF saved,PDF saved: downloads\deed_5852_1987_vol19472\19472_5852_1987.pdf (1047948 bytes)
+2026-10-30 23:59:58,20261030_235843,dhamdaha|1989|1|1,,Download complete,Download complete: downloads\deed_5852_1987_vol19472 (select + fetch + save took 5.5s)
+2026-10-30 23:59:58,20261030_235843,dhamdaha|1989|1|1,5852,Extraction,"Extraction: no JSON for deed 5852, running the processor"
+2026-10-30 23:59:58,20261030_235843,dhamdaha|1989|1|1,5852,Extracting 19472_5852_1987.pdf (attempt,Extracting 19472_5852_1987.pdf (attempt 1/2)
+2026-10-31 00:01:04,20261030_235843,dhamdaha|1989|1|1,5852,Extraction attempt 1 failed,Extraction attempt 1 failed: 19472_5852_1987_extracted.json failed validation: Property 1 Circle: missing or unreadable; Property 1 Khata No: missing or unreadable; Property 2 Circle: missing or unreadable; Property 2 Khata No: missing or unreadable
+2026-10-31 00:01:14,20261030_235843,dhamdaha|1989|1|1,5852,Extracting 19472_5852_1987.pdf (attempt,Extracting 19472_5852_1987.pdf (attempt 2/2)
+2026-10-31 00:02:16,20261030_235843,dhamdaha|1989|1|1,5852,Extraction saved,Extraction saved: returned_data\19472_5852_1987_extracted.json
+2026-10-31 00:02:16,20261030_235843,dhamdaha|1989|1|1,5852,Extraction,Extraction: processor finished in 138.4s
+2026-10-31 00:02:16,20261030_235843,dhamdaha|1989|1|1,5852,Pages,Pages: deed 5852 read as 886-888; ranges already used in this volume: []
+2026-10-31 00:02:16,20261030_235843,dhamdaha|1989|1|1,5852,Pages,"Pages: no overlap, using 886-888"
+2026-10-31 00:02:16,20261030_235843,dhamdaha|1989|1|1,5852,Fill,Fill: starting deed 5852 (clear existing rows: False)
+2026-10-31 00:02:16,20261030_235843,dhamdaha|1989|1|1,5852,Filling Index tab...,Filling Index tab...
+2026-10-31 00:02:17,20261030_235843,dhamdaha|1989|1|1,5852,Presentation Date,Presentation Date: 25-03-1987
+2026-10-31 00:02:18,20261030_235843,dhamdaha|1989|1|1,5852,Registration Date,Registration Date: 21-01-1989
+2026-10-31 00:02:19,20261030_235843,dhamdaha|1989|1|1,5852,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-31 00:02:20,20261030_235843,dhamdaha|1989|1|1,5852,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-31 00:02:21,20261030_235843,dhamdaha|1989|1|1,5852,Page No. From,Page No. From: 886
+2026-10-31 00:02:21,20261030_235843,dhamdaha|1989|1|1,5852,Page No. To,Page No. To: 888
+2026-10-31 00:02:23,20261030_235843,dhamdaha|1989|1|1,5852,Portal alert,Portal alert: Meta Data Details saved successfully.
+2026-10-31 00:02:23,20261030_235843,dhamdaha|1989|1|1,5852,Index Save,Index Save: POST https://enibandhan.bihar.gov.in/digitization/meta-data/v1/request/save -> 200
+2026-10-31 00:02:23,20261030_235843,dhamdaha|1989|1|1,5852,Index Save,Index Save: portal alert: Meta Data Details saved successfully.
+2026-10-31 00:02:23,20261030_235843,dhamdaha|1989|1|1,5852,Filling Party tab...,Filling Party tab...
+2026-10-31 00:02:25,20261030_235843,dhamdaha|1989|1|1,5852,Party Type,Party Type: 'Executant' mapped by alias to 'Executant'
+2026-10-31 00:02:25,20261030_235843,dhamdaha|1989|1|1,5852,Party Type,Party Type: Executant
+2026-10-31 00:02:25,20261030_235843,dhamdaha|1989|1|1,5852,Party Name,Party Name: Dhaneshwar Mukhiya
+2026-10-31 00:02:26,20261030_235843,dhamdaha|1989|1|1,5852,Relation Name,Relation Name: Hira Lal Mukhiya
+2026-10-31 00:02:31,20261030_235843,dhamdaha|1989|1|1,5852,Party 1/2 verified,Party 1/2 verified: Executant Dhaneshwar Mukhiya
+2026-10-31 00:02:31,20261030_235843,dhamdaha|1989|1|1,5852,Party Type,Party Type: 'Claimant' mapped by alias to 'Claimant'
+2026-10-31 00:02:32,20261030_235843,dhamdaha|1989|1|1,5852,Party Type,Party Type: Claimant
+2026-10-31 00:02:32,20261030_235843,dhamdaha|1989|1|1,5852,Party Name,Party Name: Bhagwati Devi
+2026-10-31 00:02:32,20261030_235843,dhamdaha|1989|1|1,5852,Relation Name,Relation Name: Bindeshwari Prasad Yadav
+2026-10-31 00:02:37,20261030_235843,dhamdaha|1989|1|1,5852,Party 2/2 verified,Party 2/2 verified: Claimant Bhagwati Devi
+2026-10-31 00:02:37,20261030_235843,dhamdaha|1989|1|1,5852,Filling Property tab...,Filling Property tab...
+2026-10-31 00:02:38,20261030_235843,dhamdaha|1989|1|1,5852,Volume Details -> District,"Volume Details -> District: 'Purnea', Registration Office: 'Dhamdaha'"
+2026-10-31 00:02:40,20261030_235843,dhamdaha|1989|1|1,5852,Property District,Property District: selected 'Purnea' (hidden id: 39)
+2026-10-31 00:02:42,20261030_235843,dhamdaha|1989|1|1,5852,Property Registration Office,Property Registration Office: selected 'Dhamdaha (3902)' (hidden id: 3902)
+2026-10-31 00:02:43,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: typing full name 'Raniganj'...
+2026-10-31 00:02:44,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: backspacing from 'Raniganj'...
+2026-10-31 00:02:45,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: backspacing from 'Ranigan'...
+2026-10-31 00:02:45,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: backspacing from 'Raniga'...
+2026-10-31 00:02:46,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: backspacing from 'Ranig'...
+2026-10-31 00:02:47,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: backspacing from 'Rani'...
+2026-10-31 00:02:47,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: backspacing from 'Ran'...
+2026-10-31 00:02:48,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: options ['Barhara Kothi (Banmankhi)']; closest to 'Raniganj' is 'Barhara Kothi (Banmankhi)'
+2026-10-31 00:02:48,20261030_235843,dhamdaha|1989|1|1,5852,Property Circle,Property Circle: selected 'Barhara Kothi (Banmankhi)' (hidden id: 589)
+2026-10-31 00:02:50,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: typing full name 'Haripur Kala'...
+2026-10-31 00:02:51,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Haripur Kala'...
+2026-10-31 00:02:52,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Haripur Kal'...
+2026-10-31 00:02:52,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Haripur Ka'...
+2026-10-31 00:02:53,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Haripur K'...
+2026-10-31 00:02:53,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Haripur '...
+2026-10-31 00:02:54,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Haripur'...
+2026-10-31 00:02:55,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Haripu'...
+2026-10-31 00:02:55,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: backspacing from 'Harip'...
+2026-10-31 00:02:56,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,"Property Village/Thana: options ['Barhari Ranjit (164)', 'Harirahi (155)', 'Harirahi Milik (154)']; closest to 'Haripur Kala' is 'Harirahi (155)'"
+2026-10-31 00:02:56,20261030_235843,dhamdaha|1989|1|1,5852,Property Village/Thana,Property Village/Thana: selected 'Harirahi (155)' (hidden id: 56933)
+2026-10-31 00:02:57,20261030_235843,dhamdaha|1989|1|1,5852,Khata No.,Khata No.: 12
+2026-10-31 00:02:57,20261030_235843,dhamdaha|1989|1|1,5852,Khasra No.,Khasra No.: 963
+2026-10-31 00:02:57,20261030_235843,dhamdaha|1989|1|1,5852,Property 1 fields,Property 1 fields: POST https://enibandhan.bihar.gov.in/user/v2/village/listv2 -> 200
+2026-10-31 00:03:02,20261030_235843,dhamdaha|1989|1|1,5852,Property 1/1 verified,"Property 1/1 verified: Khata 12, Khasra 963"
+2026-10-31 00:03:02,20261030_235843,dhamdaha|1989|1|1,5852,Fill,"Fill: finished in 46.4s, review notes: [""Property Circle: no option equals 'Raniganj', took closest 'Barhara Kothi (Banmankhi)'"", ""Property Village/Thana: no option equals 'Haripur Kala', took closest 'Harirahi (155)'""]"
+2026-10-31 00:03:02,20261030_235843,dhamdaha|1989|1|1,5852,Submit,Submit: starting deed 5852
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Portal alert,Portal alert: Do you want to proceed further?
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Portal alert,Portal alert: Meta Data has been created successfully.
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Submit,Submit: POST https://enibandhan.bihar.gov.in/digitization/meta-data/v1/request/create -> 200
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Submit,Submit: portal alert: Do you want to proceed further?
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Submit,Submit: portal alert: Meta Data has been created successfully.
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Submit confirmed,Submit confirmed: created successfully and back on Search Index
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Submit,Submit: finished in 0.9s
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Deed summary,"Deed summary: deed=5852 list=Pending pages=886-888 review_notes=[""Property Circle: no option equals 'Raniganj', took closest 'Barhara Kothi (Banmankhi)'"", ""Property Village/Thana: no option equals 'Haripur Kala', took closest 'Harirahi (155)'""] outcome=submitted seconds=185.8"
+2026-10-31 00:03:03,20261030_235843,dhamdaha|1989|1|1,5852,Reopening the volume,Reopening the volume from the list
+2026-10-31 00:03:12,20261030_235843,dhamdaha|1989|1|1,5852,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:03:12,20261030_235843,dhamdaha|1989|1|1,5852,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:03:13,20261030_235843,dhamdaha|1989|1|1,5852,Search filters reset,Search filters reset
+2026-10-31 00:03:13,20261030_235843,dhamdaha|1989|1|1,5852,Portal search submitted,Portal search submitted for volume number 1
+2026-10-31 00:03:13,20261030_235843,dhamdaha|1989|1|1,5852,Office similarity,Office similarity: 'dhamdaha' vs 'dhamdaha' = 100%
+2026-10-31 00:03:13,20261030_235843,dhamdaha|1989|1|1,5852,Office similarity,Office similarity: 'dhamdaha' vs 'purnea sadar' = 30%
+2026-10-31 00:03:16,20261030_235843,dhamdaha|1989|1|1,5852,Unique matching volume,"Unique matching volume found on filtered page 1: ['1', 'Dhamdaha (3902)', '1989', '1', '1', 'No', 'NABAKUMAR MAITY', 'New']"
+2026-10-31 00:03:18,20261030_235843,dhamdaha|1989|1|1,5852,Process,Process: Search Index page opened in 1.9s
+2026-10-31 00:03:20,20261030_235843,dhamdaha|1989|1|1,,Pending list loaded,"Pending list loaded: 7 deed(s) in 2.1s; ascending: ['5970', '5971', '5994', '5997', '6018', '6059', '6989']"
+2026-10-31 00:03:20,20261030_235843,dhamdaha|1989|1|1,,Next deed,Next deed: 5970 (Pending)
+2026-10-31 00:03:20,20261030_235843,dhamdaha|1989|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 0.2s
+2026-10-31 00:03:20,20261030_235843,dhamdaha|1989|1|1,,Deed selected,"Deed selected: {'doct_no': 5970, 'volume_id': '19472'}"
+2026-10-31 00:03:20,20261030_235843,dhamdaha|1989|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1987, 'wf_status': ''}]"
+2026-10-31 00:03:21,20261030_235843,dhamdaha|1989|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 0.5s
+2026-10-31 00:03:34,20261030_235843,dhamdaha|1989|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 2,271,029 -> 1,446,481 bytes"
+2026-10-31 00:03:34,20261030_235843,dhamdaha|1989|1|1,,PDF saved,PDF saved: downloads\deed_5970_1987_vol19472\19472_5970_1987.pdf (1446481 bytes)
+2026-10-31 00:03:34,20261030_235843,dhamdaha|1989|1|1,,Download complete,Download complete: downloads\deed_5970_1987_vol19472 (select + fetch + save took 14.4s)
+2026-10-31 00:03:34,20261030_235843,dhamdaha|1989|1|1,5970,Extraction,"Extraction: no JSON for deed 5970, running the processor"
+2026-10-31 00:03:34,20261030_235843,dhamdaha|1989|1|1,5970,Extracting 19472_5970_1987.pdf (attempt,Extracting 19472_5970_1987.pdf (attempt 1/2)
+2026-10-31 00:04:29,20261030_235843,dhamdaha|1989|1|1,5970,Extraction saved,Extraction saved: returned_data\19472_5970_1987_extracted.json
+2026-10-31 00:04:29,20261030_235843,dhamdaha|1989|1|1,5970,Extraction,Extraction: processor finished in 54.7s
+2026-10-31 00:04:29,20261030_235843,dhamdaha|1989|1|1,5970,Pages,"Pages: deed 5970 read as 523-525; ranges already used in this volume: [(886, 888)]"
+2026-10-31 00:04:29,20261030_235843,dhamdaha|1989|1|1,5970,Pages,"Pages: no overlap, using 523-525"
+2026-10-31 00:04:29,20261030_235843,dhamdaha|1989|1|1,5970,Fill,Fill: starting deed 5970 (clear existing rows: False)
+2026-10-31 00:04:29,20261030_235843,dhamdaha|1989|1|1,5970,Filling Index tab...,Filling Index tab...
+2026-10-31 00:04:29,20261030_235843,dhamdaha|1989|1|1,5970,Presentation Date,Presentation Date: 29-07-1987
+2026-10-31 00:04:30,20261030_235843,dhamdaha|1989|1|1,5970,Registration Date,Registration Date: 29-07-1987
+2026-10-31 00:04:31,20261030_235843,dhamdaha|1989|1|1,5970,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-31 00:04:32,20261030_235843,dhamdaha|1989|1|1,5970,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-31 00:04:32,20261030_235843,dhamdaha|1989|1|1,5970,Page No. From,Page No. From: 523
+2026-10-31 00:04:32,20261030_235843,dhamdaha|1989|1|1,5970,Page No. To,Page No. To: 525
+2026-10-31 00:04:33,20261030_235843,dhamdaha|1989|1|1,5970,Portal alert,Portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:04:41,20261030_235843,dhamdaha|1989|1|1,5970,Index Save,Index Save: portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:04:41,20261030_235843,dhamdaha|1989|1|1,5970,Deed 5970 failed,"Deed 5970 failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is unconfirmed"")"
+2026-10-31 00:04:42,20261030_235843,dhamdaha|1989|1|1,5970,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-31 00:04:42,20261030_235843,dhamdaha|1989|1|1,5970,Deed summary,"Deed summary: deed=5970 list=Pending pages=523-525 review_notes=none outcome=needs_review (fill failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is) seconds=67.1"
+2026-10-31 00:04:42,20261030_235843,dhamdaha|1989|1|1,5970,Reopening the volume,Reopening the volume from the list
+2026-10-31 00:04:59,20261030_235843,dhamdaha|1989|1|1,5970,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:04:59,20261030_235843,dhamdaha|1989|1|1,5970,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:04:59,20261030_235843,dhamdaha|1989|1|1,5970,Search filters reset,Search filters reset
+2026-10-31 00:04:59,20261030_235843,dhamdaha|1989|1|1,5970,Portal search submitted,Portal search submitted for volume number 1
+2026-10-31 00:04:59,20261030_235843,dhamdaha|1989|1|1,5970,Office similarity,Office similarity: 'dhamdaha' vs 'dhamdaha' = 100%
+2026-10-31 00:04:59,20261030_235843,dhamdaha|1989|1|1,5970,Office similarity,Office similarity: 'dhamdaha' vs 'purnea sadar' = 30%
+2026-10-31 00:05:02,20261030_235843,dhamdaha|1989|1|1,5970,Unique matching volume,"Unique matching volume found on filtered page 1: ['1', 'Dhamdaha (3902)', '1989', '1', '1', 'No', 'NABAKUMAR MAITY', 'New']"
+2026-10-31 00:05:04,20261030_235843,dhamdaha|1989|1|1,5970,Process,Process: Search Index page opened in 1.6s
+2026-10-31 00:05:05,20261030_235843,dhamdaha|1989|1|1,,Pending list loaded,"Pending list loaded: 7 deed(s) in 1.1s; ascending: ['5970', '5971', '5994', '5997', '6018', '6059', '6989']"
+2026-10-31 00:05:05,20261030_235843,dhamdaha|1989|1|1,,Next deed,Next deed: 5971 (Pending)
+2026-10-31 00:05:05,20261030_235843,dhamdaha|1989|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 0.2s
+2026-10-31 00:05:05,20261030_235843,dhamdaha|1989|1|1,,Deed selected,"Deed selected: {'doct_no': 5971, 'volume_id': '19472'}"
+2026-10-31 00:05:05,20261030_235843,dhamdaha|1989|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1987, 'wf_status': ''}]"
+2026-10-31 00:05:06,20261030_235843,dhamdaha|1989|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 0.6s
+2026-10-31 00:05:16,20261030_235843,dhamdaha|1989|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 2,347,059 -> 1,492,899 bytes"
+2026-10-31 00:05:16,20261030_235843,dhamdaha|1989|1|1,,PDF saved,PDF saved: downloads\deed_5971_1987_vol19472\19472_5971_1987.pdf (1492899 bytes)
+2026-10-31 00:05:16,20261030_235843,dhamdaha|1989|1|1,,Download complete,Download complete: downloads\deed_5971_1987_vol19472 (select + fetch + save took 11.0s)
+2026-10-31 00:05:16,20261030_235843,dhamdaha|1989|1|1,5971,Extraction,"Extraction: no JSON for deed 5971, running the processor"
+2026-10-31 00:05:16,20261030_235843,dhamdaha|1989|1|1,5971,Extracting 19472_5971_1987.pdf (attempt,Extracting 19472_5971_1987.pdf (attempt 1/2)
+2026-10-31 00:06:16,20261030_235843,dhamdaha|1989|1|1,5971,Extraction saved,Extraction saved: returned_data\19472_5971_1987_extracted.json
+2026-10-31 00:06:16,20261030_235843,dhamdaha|1989|1|1,5971,Extraction,Extraction: processor finished in 60.7s
+2026-10-31 00:06:16,20261030_235843,dhamdaha|1989|1|1,5971,Pages,"Pages: deed 5971 read as 427-430; ranges already used in this volume: [(886, 888), (523, 525)]"
+2026-10-31 00:06:16,20261030_235843,dhamdaha|1989|1|1,5971,Pages,"Pages: no overlap, using 427-430"
+2026-10-31 00:06:16,20261030_235843,dhamdaha|1989|1|1,5971,Fill,Fill: starting deed 5971 (clear existing rows: False)
+2026-10-31 00:06:17,20261030_235843,dhamdaha|1989|1|1,5971,Filling Index tab...,Filling Index tab...
+2026-10-31 00:06:17,20261030_235843,dhamdaha|1989|1|1,5971,Presentation Date,Presentation Date: 29-07-1987
+2026-10-31 00:06:17,20261030_235843,dhamdaha|1989|1|1,5971,Registration Date,Registration Date: 24-11-1987
+2026-10-31 00:06:18,20261030_235843,dhamdaha|1989|1|1,5971,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-31 00:06:20,20261030_235843,dhamdaha|1989|1|1,5971,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-31 00:06:20,20261030_235843,dhamdaha|1989|1|1,5971,Page No. From,Page No. From: 427
+2026-10-31 00:06:20,20261030_235843,dhamdaha|1989|1|1,5971,Page No. To,Page No. To: 430
+2026-10-31 00:06:20,20261030_235843,dhamdaha|1989|1|1,5971,Portal alert,Portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:06:29,20261030_235843,dhamdaha|1989|1|1,5971,Index Save,Index Save: portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:06:29,20261030_235843,dhamdaha|1989|1|1,5971,Deed 5971 failed,"Deed 5971 failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is unconfirmed"")"
+2026-10-31 00:06:29,20261030_235843,dhamdaha|1989|1|1,5971,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-31 00:06:29,20261030_235843,dhamdaha|1989|1|1,5971,Deed summary,"Deed summary: deed=5971 list=Pending pages=427-430 review_notes=none outcome=needs_review (fill failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is) seconds=73.3"
+2026-10-31 00:06:29,20261030_235843,dhamdaha|1989|1|1,5971,Reopening the volume,Reopening the volume from the list
+2026-10-31 00:06:46,20261030_235843,dhamdaha|1989|1|1,5971,Deed outcomes,"Deed outcomes: needs_review=2, submitted=2 | Volume outcomes: in_progress=1, needs_review=3, paused=4"
+2026-10-31 00:14:44,20261031_001444,,,Header row detected,Header row detected at Excel row 1.
+2026-10-31 00:14:44,20261031_001444,,,Loaded 32 volume,"Loaded 32 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-31 00:14:44,20261031_001444,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-31 00:14:44,20261031_001444,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=3 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-31 00:14:46,20261031_001444,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-31 00:14:46,20261031_001444,,,Already logged in,Already logged in
+2026-10-31 00:14:46,20261031_001444,dhamdaha|1989|1|1,,=== Volume dhamdaha|1989|1|1,=== Volume dhamdaha|1989|1|1 ===
+2026-10-31 00:14:54,20261031_001444,dhamdaha|1989|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:14:55,20261031_001444,dhamdaha|1989|1|1,,Search filters reset,Search filters reset
+2026-10-31 00:14:55,20261031_001444,dhamdaha|1989|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-31 00:14:55,20261031_001444,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'dhamdaha' = 100%
+2026-10-31 00:14:55,20261031_001444,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'purnea sadar' = 30%
+2026-10-31 00:14:58,20261031_001444,dhamdaha|1989|1|1,,Unique matching volume,"Unique matching volume found on filtered page 1: ['1', 'Dhamdaha (3902)', '1989', '1', '1', 'No', 'NABAKUMAR MAITY', 'New']"
+2026-10-31 00:14:59,20261031_001444,dhamdaha|1989|1|1,,Process,Process: Search Index page opened in 1.4s
+2026-10-31 00:15:02,20261031_001444,dhamdaha|1989|1|1,,Pending list loaded,"Pending list loaded: 7 deed(s) in 2.6s; ascending: ['5970', '5971', '5994', '5997', '6018', '6059', '6989']"
+2026-10-31 00:15:02,20261031_001444,dhamdaha|1989|1|1,,Next deed,Next deed: 5970 (Pending)
+2026-10-31 00:15:02,20261031_001444,dhamdaha|1989|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 0.2s
+2026-10-31 00:15:02,20261031_001444,dhamdaha|1989|1|1,,Deed selected,"Deed selected: {'doct_no': 5970, 'volume_id': '19472'}"
+2026-10-31 00:15:02,20261031_001444,dhamdaha|1989|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1987, 'wf_status': ''}]"
+2026-10-31 00:15:03,20261031_001444,dhamdaha|1989|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 0.5s
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 2,271,029 -> 1,446,481 bytes"
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,,PDF saved,PDF saved: downloads\deed_5970_1987_vol19472\19472_5970_1987.pdf (1446481 bytes)
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,,Download complete,Download complete: downloads\deed_5970_1987_vol19472 (select + fetch + save took 8.5s)
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,5970,Extraction,Extraction: using existing JSON for deed 5970
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,5970,Pages,"Pages: deed 5970 read as 523-525; ranges already used in this volume: [(886, 888), (427, 430)]"
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,5970,Pages,"Pages: no overlap, using 523-525"
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,5970,Fill,Fill: starting deed 5970 (clear existing rows: False)
+2026-10-31 00:15:10,20261031_001444,dhamdaha|1989|1|1,5970,Filling Index tab...,Filling Index tab...
+2026-10-31 00:15:11,20261031_001444,dhamdaha|1989|1|1,5970,Presentation Date,Presentation Date: 29-07-1987
+2026-10-31 00:15:11,20261031_001444,dhamdaha|1989|1|1,5970,Registration Date,Registration Date: 29-07-1987
+2026-10-31 00:15:12,20261031_001444,dhamdaha|1989|1|1,5970,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-31 00:15:14,20261031_001444,dhamdaha|1989|1|1,5970,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-31 00:15:14,20261031_001444,dhamdaha|1989|1|1,5970,Page No. From,Page No. From: 523
+2026-10-31 00:15:14,20261031_001444,dhamdaha|1989|1|1,5970,Page No. To,Page No. To: 525
+2026-10-31 00:15:14,20261031_001444,dhamdaha|1989|1|1,5970,Portal alert,Portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:15:23,20261031_001444,dhamdaha|1989|1|1,5970,Index Save,Index Save: portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:15:23,20261031_001444,dhamdaha|1989|1|1,5970,Deed 5970 failed,"Deed 5970 failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is unconfirmed"")"
+2026-10-31 00:15:23,20261031_001444,dhamdaha|1989|1|1,5970,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-31 00:15:23,20261031_001444,dhamdaha|1989|1|1,5970,Deed summary,"Deed summary: deed=5970 list=Pending pages=523-525 review_notes=none outcome=needs_review (fill failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is) seconds=13.0"
+2026-10-31 00:15:23,20261031_001444,dhamdaha|1989|1|1,5970,Reopening the volume,Reopening the volume from the list
+2026-10-31 00:15:43,20261031_001444,dhamdaha|1989|1|1,5970,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:15:43,20261031_001444,dhamdaha|1989|1|1,5970,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:15:45,20261031_001444,dhamdaha|1989|1|1,5970,Search filters reset,Search filters reset
+2026-10-31 00:15:47,20261031_001444,dhamdaha|1989|1|1,5970,Portal search submitted,Portal search submitted for volume number 1
+2026-10-31 00:15:47,20261031_001444,dhamdaha|1989|1|1,5970,Office similarity,Office similarity: 'dhamdaha' vs 'dhamdaha' = 100%
+2026-10-31 00:15:47,20261031_001444,dhamdaha|1989|1|1,5970,Office similarity,Office similarity: 'dhamdaha' vs 'purnea sadar' = 30%
+2026-10-31 00:16:17,20261031_001444,dhamdaha|1989|1|1,5970,Unique matching volume,"Unique matching volume found on filtered page 1: ['1', 'Dhamdaha (3902)', '1989', '1', '1', 'No', 'NABAKUMAR MAITY', 'New']"
+2026-10-31 00:16:21,20261031_001444,dhamdaha|1989|1|1,5970,Process,Process: Search Index page opened in 3.4s
+2026-10-31 00:16:23,20261031_001444,dhamdaha|1989|1|1,,Pending list loaded,"Pending list loaded: 7 deed(s) in 2.5s; ascending: ['5970', '5971', '5994', '5997', '6018', '6059', '6989']"
+2026-10-31 00:16:23,20261031_001444,dhamdaha|1989|1|1,,Next deed,Next deed: 5971 (Pending)
+2026-10-31 00:16:27,20261031_001444,dhamdaha|1989|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 2.1s
+2026-10-31 00:16:27,20261031_001444,dhamdaha|1989|1|1,,Deed selected,"Deed selected: {'doct_no': 5971, 'volume_id': '19472'}"
+2026-10-31 00:16:27,20261031_001444,dhamdaha|1989|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1987, 'wf_status': ''}]"
+2026-10-31 00:16:29,20261031_001444,dhamdaha|1989|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 2.4s
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 2,347,059 -> 1,492,899 bytes"
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,,PDF saved,PDF saved: downloads\deed_5971_1987_vol19472\19472_5971_1987.pdf (1492899 bytes)
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,,Download complete,Download complete: downloads\deed_5971_1987_vol19472 (select + fetch + save took 15.2s)
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,5971,Extraction,Extraction: using existing JSON for deed 5971
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,5971,Pages,"Pages: deed 5971 read as 427-430; ranges already used in this volume: [(886, 888), (523, 525)]"
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,5971,Pages,"Pages: no overlap, using 427-430"
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,5971,Fill,Fill: starting deed 5971 (clear existing rows: False)
+2026-10-31 00:16:40,20261031_001444,dhamdaha|1989|1|1,5971,Filling Index tab...,Filling Index tab...
+2026-10-31 00:16:42,20261031_001444,dhamdaha|1989|1|1,5971,Presentation Date,Presentation Date: 29-07-1987
+2026-10-31 00:16:42,20261031_001444,dhamdaha|1989|1|1,5971,Registration Date,Registration Date: 24-11-1987
+2026-10-31 00:16:44,20261031_001444,dhamdaha|1989|1|1,5971,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-31 00:16:45,20261031_001444,dhamdaha|1989|1|1,5971,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-31 00:16:45,20261031_001444,dhamdaha|1989|1|1,5971,Page No. From,Page No. From: 427
+2026-10-31 00:16:45,20261031_001444,dhamdaha|1989|1|1,5971,Page No. To,Page No. To: 430
+2026-10-31 00:16:47,20261031_001444,dhamdaha|1989|1|1,5971,Portal alert,Portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:16:55,20261031_001444,dhamdaha|1989|1|1,5971,Index Save,Index Save: portal alert: The Registration Date must be within the same year as the Volume Year.
+2026-10-31 00:16:55,20261031_001444,dhamdaha|1989|1|1,5971,Deed 5971 failed,"Deed 5971 failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is unconfirmed"")"
+2026-10-31 00:16:56,20261031_001444,dhamdaha|1989|1|1,5971,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-31 00:16:56,20261031_001444,dhamdaha|1989|1|1,5971,Deed summary,"Deed summary: deed=5971 list=Pending pages=427-430 review_notes=none outcome=needs_review (fill failed: RuntimeError(""Index Save: no 'saved successfully' alert was seen, so the save is) seconds=15.9"
+2026-10-31 00:16:56,20261031_001444,dhamdaha|1989|1|1,5971,Reopening the volume,Reopening the volume from the list
+2026-10-31 00:17:00,20261031_001444,dhamdaha|1989|1|1,5971,Deed outcomes,"Deed outcomes: needs_review=2, submitted=2 | Volume outcomes: in_progress=1, needs_review=3, paused=4"
+2026-10-31 00:50:39,20261031_005038,,,Header row detected,Header row detected at Excel row 1.
+2026-10-31 00:50:39,20261031_005038,,,Loaded 32 volume,"Loaded 32 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-31 00:50:39,20261031_005038,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-31 00:50:39,20261031_005038,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=3 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-31 00:50:40,20261031_005038,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-31 00:50:44,20261031_005038,,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-31 00:50:53,20261031_005038,,,Login successful,Login successful
+2026-10-31 00:50:53,20261031_005038,dhamdaha|1989|1|1,,=== Volume dhamdaha|1989|1|1,=== Volume dhamdaha|1989|1|1 ===
+2026-10-31 00:51:01,20261031_005038,dhamdaha|1989|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 00:51:01,20261031_005038,dhamdaha|1989|1|1,,Search filters reset,Search filters reset
+2026-10-31 00:51:02,20261031_005038,dhamdaha|1989|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-31 00:51:02,20261031_005038,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'dhamdaha' = 100%
+2026-10-31 00:51:02,20261031_005038,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'purnea sadar' = 30%
+2026-10-31 00:51:05,20261031_005038,dhamdaha|1989|1|1,,Unique matching volume,"Unique matching volume found on filtered page 1: ['1', 'Dhamdaha (3902)', '1989', '1', '1', 'No', 'NABAKUMAR MAITY', 'New']"
+2026-10-31 00:51:07,20261031_005038,dhamdaha|1989|1|1,,Process,Process: Search Index page opened in 2.5s
+2026-10-31 00:51:10,20261031_005038,dhamdaha|1989|1|1,,Pending list loaded,"Pending list loaded: 7 deed(s) in 2.6s; ascending: ['5970', '5971', '5994', '5997', '6018', '6059', '6989']"
+2026-10-31 00:51:10,20261031_005038,dhamdaha|1989|1|1,,Next deed,Next deed: 5970 (Pending)
+2026-10-31 00:51:10,20261031_005038,dhamdaha|1989|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 0.2s
+2026-10-31 00:51:10,20261031_005038,dhamdaha|1989|1|1,,Deed selected,"Deed selected: {'doct_no': 5970, 'volume_id': '19472'}"
+2026-10-31 00:51:10,20261031_005038,dhamdaha|1989|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1987, 'wf_status': ''}]"
+2026-10-31 00:51:11,20261031_005038,dhamdaha|1989|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 0.7s
+2026-10-31 00:51:22,20261031_005038,dhamdaha|1989|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 2,271,029 -> 1,446,481 bytes"
+2026-10-31 00:51:22,20261031_005038,dhamdaha|1989|1|1,,PDF saved,PDF saved: downloads\deed_5970_1987_vol19472\19472_5970_1987.pdf (1446481 bytes)
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,,Download complete,Download complete: downloads\deed_5970_1987_vol19472 (select + fetch + save took 12.4s)
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Volume Year fix,"Volume Year fix: Registration Date 29-07-1987 -> 29-07-1989 (Volume Year 1989, from 19472_5970_1987_extracted.json)"
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Extraction,Extraction: using existing JSON for deed 5970
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Pages,"Pages: deed 5970 read as 523-525; ranges already used in this volume: [(886, 888), (427, 430)]"
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Pages,"Pages: no overlap, using 523-525"
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Fill,Fill: starting deed 5970 (clear existing rows: False)
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Filling Index tab...,Filling Index tab...
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Presentation Date,Presentation Date: 29-07-1987
+2026-10-31 00:51:23,20261031_005038,dhamdaha|1989|1|1,5970,Registration Date,Registration Date: 29-07-1989
+2026-10-31 00:51:24,20261031_005038,dhamdaha|1989|1|1,5970,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-31 00:51:26,20261031_005038,dhamdaha|1989|1|1,5970,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-31 00:51:26,20261031_005038,dhamdaha|1989|1|1,5970,Page No. From,Page No. From: 523
+2026-10-31 00:51:26,20261031_005038,dhamdaha|1989|1|1,5970,Page No. To,Page No. To: 525
+2026-10-31 00:51:26,20261031_005038,dhamdaha|1989|1|1,5970,Portal alert,Portal alert: The start and end pages have already been assigned to another document in this volume. Please try again with different page details.
+2026-10-31 00:51:26,20261031_005038,dhamdaha|1989|1|1,5970,Index Save,Index Save: POST https://enibandhan.bihar.gov.in/digitization/meta-data/v1/request/save -> 400
+2026-10-31 00:51:26,20261031_005038,dhamdaha|1989|1|1,5970,Index Save,Index Save: portal alert: The start and end pages have already been assigned to another document in this volume. Please try again with different page details.
+2026-10-31 00:51:26,20261031_005038,dhamdaha|1989|1|1,5970,Deed 5970 failed,"Deed 5970 failed: RuntimeError(""Index Save failed. Server errors: [('POST', 'https://enibandhan.bihar.gov.in/digitization/meta-data/v1/request/save', 400)]. Alerts: ['The start and end pages have already been assigned to another document in this volume. Please try again with different page details.']"")"
+2026-10-31 00:51:27,20261031_005038,dhamdaha|1989|1|1,5970,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-31 00:51:27,20261031_005038,dhamdaha|1989|1|1,5970,Deed summary,"Deed summary: deed=5970 list=Pending pages=523-525 review_notes=none outcome=needs_review (fill failed: RuntimeError(""Index Save failed. Server errors: [('POST', 'https://enibandhan.bi) seconds=4.4"
+2026-10-31 00:51:27,20261031_005038,dhamdaha|1989|1|1,5970,Reopening the volume,Reopening the volume from the list
+2026-10-31 00:51:34,20261031_005038,dhamdaha|1989|1|1,5970,Deed outcomes,"Deed outcomes: needs_review=2, submitted=2 | Volume outcomes: in_progress=1, needs_review=3, paused=4"
+2026-10-31 01:15:04,20261031_011504,,,Header row detected,Header row detected at Excel row 1.
+2026-10-31 01:15:04,20261031_011504,,,Loaded 32 volume,"Loaded 32 volume records from worklist.xlsx, worksheet 'Sheet1'."
+2026-10-31 01:15:04,20261031_011504,,,Sorted worklist saved to C,Sorted worklist saved to C:\Users\knnit\Music\Project\Automation\returned_data\worklist.json
+2026-10-31 01:15:04,20261031_011504,,,Run settings,"Run settings: AUTO_SUBMIT=True ALLOW_REVIEW_SUBMIT=True MAX_DEEDS=3 MAX_VOLUMES=3 MAX_FAILURES=3 LIST_ORDER=P,I VOLUME_ATTEMPTS=3 NOT_FOUND_ATTEMPTS=2 ON_VOLUME_FAILURE=stop"
+2026-10-31 01:15:05,20261031_011504,,,Attaching to Chrome,Attaching to Chrome already running on port 9222
+2026-10-31 01:15:09,20261031_011504,,,Attempt 1/3,Attempt 1/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-31 01:15:22,20261031_011504,,,Portal alert,Portal alert: Unable to decrypt the provided password.
+2026-10-31 01:15:22,20261031_011504,,,Portal alert,Portal alert: Please enter valid captcha.
+2026-10-31 01:15:23,20261031_011504,,,Login rejected by,"Login rejected by the portal, retrying"
+2026-10-31 01:15:25,20261031_011504,,,Attempt 2/3,Attempt 2/3: type the CAPTCHA and click LOGIN in the browser
+2026-10-31 01:15:36,20261031_011504,,,Login successful,Login successful
+2026-10-31 01:15:36,20261031_011504,dhamdaha|1989|1|1,,=== Volume dhamdaha|1989|1|1,=== Volume dhamdaha|1989|1|1 ===
+2026-10-31 01:15:44,20261031_011504,dhamdaha|1989|1|1,,Metadata Creation list,Metadata Creation list loaded
+2026-10-31 01:15:44,20261031_011504,dhamdaha|1989|1|1,,Search filters reset,Search filters reset
+2026-10-31 01:15:44,20261031_011504,dhamdaha|1989|1|1,,Portal search submitted,Portal search submitted for volume number 1
+2026-10-31 01:15:44,20261031_011504,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'dhamdaha' = 100%
+2026-10-31 01:15:44,20261031_011504,dhamdaha|1989|1|1,,Office similarity,Office similarity: 'dhamdaha' vs 'purnea sadar' = 30%
+2026-10-31 01:15:47,20261031_011504,dhamdaha|1989|1|1,,Unique matching volume,"Unique matching volume found on filtered page 1: ['1', 'Dhamdaha (3902)', '1989', '1', '1', 'No', 'NABAKUMAR MAITY', 'New']"
+2026-10-31 01:15:48,20261031_011504,dhamdaha|1989|1|1,,Process,Process: Search Index page opened in 1.3s
+2026-10-31 01:15:51,20261031_011504,dhamdaha|1989|1|1,,Pending list loaded,"Pending list loaded: 7 deed(s) in 3.1s; ascending: ['5970', '5971', '5994', '5997', '6018', '6059', '6989']"
+2026-10-31 01:15:51,20261031_011504,dhamdaha|1989|1|1,,Next deed,Next deed: 5970 (Pending)
+2026-10-31 01:15:52,20261031_011504,dhamdaha|1989|1|1,,Deed selection,Deed selection: pres-year response on attempt 1 in 0.4s
+2026-10-31 01:15:52,20261031_011504,dhamdaha|1989|1|1,,Deed selected,"Deed selected: {'doct_no': 5970, 'volume_id': '19472'}"
+2026-10-31 01:15:52,20261031_011504,dhamdaha|1989|1|1,,Presentation years offered,"Presentation years offered: [{'presentation_year': 1987, 'wf_status': ''}]"
+2026-10-31 01:15:52,20261031_011504,dhamdaha|1989|1|1,,Fetch Details,Fetch Details: both responses received on attempt 1 in 0.5s
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,,Recovered PDF byte encoding,"Recovered PDF byte encoding: 2,271,029 -> 1,446,481 bytes"
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,,PDF saved,PDF saved: downloads\deed_5970_1987_vol19472\19472_5970_1987.pdf (1446481 bytes)
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,,Download complete,Download complete: downloads\deed_5970_1987_vol19472 (select + fetch + save took 8.8s)
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,5970,Volume Year fix,"Volume Year fix: Presentation Date 29-07-1987 -> 29-07-1989 (Volume Year 1989, from 19472_5970_1987_extracted.json)"
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,5970,Volume Year fix,"Volume Year fix: Registration Date 29-07-1987 -> 29-07-1989 (Volume Year 1989, from 19472_5970_1987_extracted.json)"
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,5970,Extraction,Extraction: using existing JSON for deed 5970
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,5970,Pages,Pages: deed 5970 read as 523-525; ranges already used in this volume: []
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,5970,Pages,"Pages: no overlap, using 523-525"
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,5970,Fill,Fill: starting deed 5970 (clear existing rows: False)
+2026-10-31 01:16:00,20261031_011504,dhamdaha|1989|1|1,5970,Filling Index tab...,Filling Index tab...
+2026-10-31 01:16:01,20261031_011504,dhamdaha|1989|1|1,5970,Presentation Date,Presentation Date: 29-07-1989
+2026-10-31 01:16:01,20261031_011504,dhamdaha|1989|1|1,5970,Registration Date,Registration Date: 29-07-1989
+2026-10-31 01:16:02,20261031_011504,dhamdaha|1989|1|1,5970,Instrument Type,Instrument Type: Sale / Conveyance
+2026-10-31 01:16:03,20261031_011504,dhamdaha|1989|1|1,5970,Instrument Sub-Type,Instrument Sub-Type: Sale
+2026-10-31 01:16:04,20261031_011504,dhamdaha|1989|1|1,5970,Page No. From,Page No. From: 523
+2026-10-31 01:16:04,20261031_011504,dhamdaha|1989|1|1,5970,Page No. To,Page No. To: 525
+2026-10-31 01:16:04,20261031_011504,dhamdaha|1989|1|1,5970,Portal alert,Portal alert: Presentation Date must be within the same year as the Presentation Year.
+2026-10-31 01:16:04,20261031_011504,dhamdaha|1989|1|1,5970,Index Save,Index Save: portal alert: Presentation Date must be within the same year as the Presentation Year.
+2026-10-31 01:16:04,20261031_011504,dhamdaha|1989|1|1,5970,Deed 5970 failed,"Deed 5970 failed: RuntimeError(""Index Save failed. Server errors: []. Alerts: ['Presentation Date must be within the same year as the Presentation Year.']"")"
+2026-10-31 01:16:04,20261031_011504,dhamdaha|1989|1|1,5970,Screenshot saved,Screenshot saved: downloads\debug.png
+2026-10-31 01:16:04,20261031_011504,dhamdaha|1989|1|1,5970,Deed summary,"Deed summary: deed=5970 list=Pending pages=523-525 review_notes=none outcome=needs_review (fill failed: RuntimeError(""Index Save failed. Server errors: []. Alerts: ['Presentation Date ) seconds=4.3"
+2026-10-31 01:16:15,20261031_011504,dhamdaha|1989|1|1,5970,Back to Search,"Back to Search Index failed (TimeoutError('Locator.wait_for: Timeout 10000ms exceeded.\nCall log:\n  - waiting for locator(""#deed_status"") to be visible\n')); reopening the volume from the list"
+2026-10-31 01:16:15,20261031_011504,dhamdaha|1989|1|1,5970,Reopening the volume,Reopening the volume from the list
+2026-10-31 01:16:17,20261031_011504,dhamdaha|1989|1|1,5970,Deed outcomes,Deed outcomes: needs_review=1 | Volume outcomes: in_progress=1
+2026-10-31 11:13:29,20261031_111329,,,Volume Year fix,"Volume Year fix: Registration Date 29-07-1987 -> 29-07-1989 (Volume Year 1989, from 19472_5970_1987_extracted.json)"

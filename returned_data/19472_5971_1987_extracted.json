@@ -1,0 +1,26 @@
+{
+  "Presentation Date": "29-07-1987",
+  "Registration Date": "24-11-1987",
+  "Page No. From": "427",
+  "Page No. To": "430",
+  "Parties": [
+    {
+      "Party Type": "Executant",
+      "Name": "Ramkrishna Yadav",
+      "Relation Name": "Shiv Sahay Yadav"
+    },
+    {
+      "Party Type": "Claimant",
+      "Name": "Haveli Devi",
+      "Relation Name": "Ramchandra Mandal"
+    }
+  ],
+  "Properties": [
+    {
+      "Circle": "Dhamdaha",
+      "Village/Thana": "Sonehta",
+      "Khata No": "265",
+      "Khasra No": "1119"
+    }
+  ]
+}
