@@ -1,337 +1,564 @@
-import json
 import os
+import io
 import re
-import sys
+import json
 import time
+import csv
+import argparse
+import hashlib
 from pathlib import Path
 
+import pymupdf as fitz
+from PIL import Image
 from dotenv import load_dotenv
 from google import genai
-from google.genai import types, errors
+from google.genai import types
 
 
 # ============================================================
-# CONFIGURATION
+# PATHS
 # ============================================================
 
 BASE_DIR = Path(__file__).resolve().parent
-INPUT_DIR = BASE_DIR / "input"
+PROJECT_DIR = BASE_DIR.parent
+
+DOWNLOADS_DIR = PROJECT_DIR / "downloads"
 OUTPUT_DIR = BASE_DIR / "output"
 PROMPT_FILE = BASE_DIR / "prompt.txt"
 
 load_dotenv(BASE_DIR / ".env")
 
-API_KEY = os.getenv("GEMINI_API_KEY", "").strip()
-
-PRIMARY_MODEL = os.getenv("GEMINI_MODEL", "gemini-2.5-flash").strip()
-
-FALLBACK_MODELS = [
-    model.strip()
-    for model in os.getenv("GEMINI_FALLBACK_MODELS", "").split(",")
-    if model.strip()
-]
-
-MAX_ATTEMPTS = 4
-RETRYABLE_STATUS_CODES = {408, 429, 500, 502, 503, 504}
-
-# Output schema: flat top-level fields plus two lists of objects.
-TOP_FIELDS = [
-    "Presentation Date",
-    "Registration Date",
-    "Page No. From",
-    "Page No. To",
-]
-PARTY_FIELDS = ["Party Type", "Name", "Relation Name"]
-PROPERTY_FIELDS = ["Circle", "Village/Thana", "Khata No", "Khasra No"]
-
-NOT_A_VALUE_PREFIX = ("unclear", "unreadable", "illegible", "not found", "not available")
-NOT_A_VALUE_EXACT = {"n/a", "na", "null", "none", "-"}
+API_KEY = os.getenv("GEMINI_API_KEY", "")
 
 
 # ============================================================
-# HELPERS
+# SETTINGS
 # ============================================================
 
-def log(message):
-    print(message, flush=True)
+DEFAULT_MODEL = "gemini-3.1-flash-lite"
+DEFAULT_DPI = 200
+JPEG_QUALITY = 85
 
+USD_TO_INR = 87.0
+
+# Cached input is billed at a reduced rate. 10% is an assumption;
+# verify on Google's pricing page. Cache storage is not included.
+CACHE_READ_FACTOR = 0.10
+
+# Hard cap on the reply. The reply is a few short lines.
+MAX_OUTPUT_TOKENS = 700
+
+# Configured pricing in USD per 1 million tokens.
+# Verify official prices before using for actual billing estimates.
+MODEL_PRICES = {
+    "gemini-3.1-flash-lite": {"input": 0.25, "output": 1.50},
+    "gemini-3.5-flash-lite": {"input": 0.30, "output": 2.50},
+    "gemini-3.5-flash": {"input": 1.50, "output": 9.00},
+    "gemini-3.6-flash": {"input": 0.75, "output": 3.75},
+}
+
+MAX_ATTEMPTS = 3
+RETRY_DELAY_SECONDS = 3
+
+USER_TEXT = (
+    "Image 1 is the full first page of the deed. {second}"
+    "Extract the values and answer only with the required lines."
+)
+SECOND_MULTI = (
+    "Image 2 is the left strip of the last page "
+    "(use it for the Registration Date). "
+)
+SECOND_SINGLE = "The deed has one page, so there is no second image. "
+
+
+# ============================================================
+# PROMPT
+# ============================================================
 
 def load_prompt():
-    """Read the extraction instructions from prompt.txt."""
     if not PROMPT_FILE.exists():
         raise FileNotFoundError(f"Prompt file not found: {PROMPT_FILE}")
 
     prompt = PROMPT_FILE.read_text(encoding="utf-8").strip()
 
     if not prompt:
-        raise ValueError("prompt.txt is empty.")
+        raise ValueError("prompt.txt is empty")
 
     return prompt
 
 
-def find_pdf(pdf_argument=None):
-    """Use the supplied PDF path or the first PDF in input/."""
+# ============================================================
+# PDF RENDERING
+# First page: full page. Last page: left strip (multi-page only).
+# ============================================================
 
-    if pdf_argument:
-        pdf_path = Path(pdf_argument).expanduser()
-
-        if not pdf_path.is_absolute():
-            pdf_path = (Path.cwd() / pdf_path).resolve()
-
-        if not pdf_path.is_file():
-            raise FileNotFoundError(f"PDF not found: {pdf_path}")
-
-        if pdf_path.suffix.lower() != ".pdf":
-            raise ValueError("The supplied file must be a PDF.")
-
-        return pdf_path
-
-    INPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    pdf_files = sorted(
-        path for path in INPUT_DIR.iterdir()
-        if path.is_file() and path.suffix.lower() == ".pdf"
+def render_jpeg(doc, idx, dpi=DEFAULT_DPI):
+    pix = doc[idx].get_pixmap(
+        matrix=fitz.Matrix(dpi / 72, dpi / 72),
+        colorspace=fitz.csRGB,
+        alpha=False,
     )
 
-    if not pdf_files:
-        raise FileNotFoundError(
-            f"No PDF found in {INPUT_DIR}\n"
-            "Place your PDF in the input folder or pass its path "
-            "as a command-line argument."
-        )
-
-    if len(pdf_files) > 1:
-        log(f"Found {len(pdf_files)} PDFs. Using the first: {pdf_files[0].name}")
-
-    return pdf_files[0]
+    return pix.tobytes("jpeg", jpg_quality=JPEG_QUALITY)
 
 
-def get_year_from_filename(filename):
-    """Trailing four-digit year of a filename such as 206639_113_1921.pdf (context only)."""
-    match = re.search(r"(\d{4})$", Path(filename).stem)
-    return match.group(1) if match else None
+def render_last_page_left_crop(doc, idx, dpi=DEFAULT_DPI):
+    """Left 25% of the page width, from 10% of the height to the bottom."""
 
-
-def build_prompt(base_prompt, pdf_path):
-    """Add runtime context without treating filenames as evidence."""
-
-    filename_year = get_year_from_filename(pdf_path.name)
-
-    context = (
-        "\n\nIMPORTANT EXTRACTION RULES:\n"
-        "1. Read the document itself as the primary source of truth.\n"
-        "2. The document may contain Urdu, Hindi, English, "
-        "handwriting, stamps, or mixed scripts.\n"
-        "3. Translate or transliterate names and labels into English "
-        "where possible, preserving their meaning.\n"
-        "4. Do not invent legal names, dates, registration numbers, "
-        "property identifiers, or other factual values.\n"
-        "5. If a single value cannot be read, use null for that value only. "
-        "Never use placeholder text such as 'Unreadable' or 'N/A'.\n"
-        "6. Do not treat a filename, a guessed value, or a typical "
-        "regional practice as proof of a document fact.\n"
-        "7. Follow the JSON structure given in the instructions above exactly. "
-        "Top-level keys: " + json.dumps(TOP_FIELDS + ["Parties", "Properties"], ensure_ascii=False) + ". "
-        "Each Parties entry has exactly the keys " + json.dumps(PARTY_FIELDS, ensure_ascii=False) + ". "
-        "Each Properties entry has exactly the keys " + json.dumps(PROPERTY_FIELDS, ensure_ascii=False) + ".\n"
+    pix = doc[idx].get_pixmap(
+        matrix=fitz.Matrix(dpi / 72, dpi / 72),
+        colorspace=fitz.csRGB,
+        alpha=False,
     )
 
-    if filename_year:
-        context += (
-            "\nFilename context: the filename contains the year "
-            f"{filename_year}. This is not verified document evidence. "
-            "Do not use it as a field value unless the document itself "
-            "supports that value.\n"
-        )
+    image = Image.open(io.BytesIO(pix.tobytes("png")))
 
-    context += (
-        "\nDo not wrap the JSON in Markdown fences. "
-        "Do not include explanations outside the JSON object."
-    )
+    width, height = image.size
 
-    return base_prompt + context
+    cropped = image.crop((0, int(height * 0.10), int(width * 0.25), height))
+
+    buffer = io.BytesIO()
+    cropped.save(buffer, format="JPEG", quality=JPEG_QUALITY)
+
+    return buffer.getvalue()
 
 
-def extract_json(text):
-    """Parse JSON, tolerating Markdown code fences if returned."""
-
-    if not text or not text.strip():
-        raise ValueError("Gemini returned an empty response.")
-
-    cleaned = text.strip()
-    cleaned = re.sub(r"^```(?:json)?\s*", "", cleaned, flags=re.IGNORECASE)
-    cleaned = re.sub(r"\s*```$", "", cleaned)
+def prepare_pdf_images(pdf_path, dpi=DEFAULT_DPI):
+    doc = fitz.open(pdf_path)
 
     try:
-        data = json.loads(cleaned)
-    except json.JSONDecodeError:
-        start = cleaned.find("{")
-        end = cleaned.rfind("}")
+        page_count = len(doc)
 
-        if start == -1 or end <= start:
-            raise ValueError(
-                "Gemini did not return a valid JSON object.\n"
-                f"Response received:\n{cleaned[:1500]}"
+        if page_count == 0:
+            raise ValueError("PDF contains no pages")
+
+        images = [{"name": "first_page_full", "data": render_jpeg(doc, 0, dpi)}]
+
+        if page_count > 1:
+            images.append({
+                "name": "last_page_left_crop",
+                "data": render_last_page_left_crop(doc, page_count - 1, dpi),
+            })
+    finally:
+        doc.close()
+
+    return images, page_count
+
+
+def build_contents(images):
+    contents = [
+        types.Part.from_bytes(data=image["data"], mime_type="image/jpeg")
+        for image in images
+    ]
+
+    second = SECOND_MULTI if len(images) > 1 else SECOND_SINGLE
+    contents.append(USER_TEXT.format(second=second))
+
+    return contents
+
+
+# ============================================================
+# PROMPT CACHE
+# Only the prompt is cached. It is identical for every deed, so
+# the cache is found again by name on the next run and reused.
+# The page images are different every time and are never cached.
+# ============================================================
+
+def cache_key(model, prompt):
+    digest = hashlib.sha1(prompt.encode("utf-8")).hexdigest()[:10]
+    return f"deed-{model}-{digest}"
+
+
+def get_or_create_cache(client, model, prompt, cache_hours=1.0):
+    key = cache_key(model, prompt)
+    ttl = f"{int(cache_hours * 3600)}s"
+
+    try:
+        for cache in client.caches.list():
+            if getattr(cache, "display_name", None) == key:
+                try:
+                    client.caches.update(
+                        name=cache.name,
+                        config=types.UpdateCachedContentConfig(ttl=ttl),
+                    )
+                except Exception:
+                    pass
+
+                print(f"Cache reused: {cache.name}")
+                return cache.name
+
+    except Exception as e:
+        print(f"Could not list caches: {str(e)[:150]}")
+
+    try:
+        count = client.models.count_tokens(model=model, contents=prompt)
+        print(f"Prompt tokens: {count.total_tokens}")
+    except Exception:
+        pass
+
+    try:
+        cache = client.caches.create(
+            model=model,
+            config=types.CreateCachedContentConfig(
+                system_instruction=prompt,
+                ttl=ttl,
+                display_name=key,
+            ),
+        )
+
+        print(f"Cache created: {cache.name}")
+        return cache.name
+
+    except Exception as e:
+        print(f"Cache not used ({str(e)[:200]})")
+        print("Continuing without explicit cache.")
+        return None
+
+
+def delete_cache(client, cache_name):
+    if not cache_name:
+        return
+
+    try:
+        client.caches.delete(name=cache_name)
+        print(f"Cache deleted: {cache_name}")
+
+    except Exception as e:
+        print(f"Cache deletion failed: {e}")
+
+
+# ============================================================
+# GEMINI REQUEST (thinking off, plain-text reply)
+# ============================================================
+
+def build_configs(prompt, cache_name):
+    base = {"temperature": 0, "max_output_tokens": MAX_OUTPUT_TOKENS}
+
+    if cache_name:
+        base["cached_content"] = cache_name
+    else:
+        base["system_instruction"] = prompt
+
+    thinking_options = [
+        lambda: types.ThinkingConfig(thinking_level="minimal"),
+        lambda: types.ThinkingConfig(thinking_budget=0),
+        None,
+    ]
+
+    configs = []
+
+    for make in thinking_options:
+        kwargs = dict(base)
+
+        if make is not None:
+            try:
+                kwargs["thinking_config"] = make()
+            except Exception:
+                continue
+
+        try:
+            configs.append(types.GenerateContentConfig(**kwargs))
+        except Exception:
+            continue
+
+    return configs
+
+
+def call_model(client, model, prompt, contents, cache_name=None):
+    last_error = None
+
+    for config in build_configs(prompt, cache_name):
+        for attempt in range(1, MAX_ATTEMPTS + 1):
+            try:
+                print(f"API attempt {attempt}/{MAX_ATTEMPTS}")
+
+                return client.models.generate_content(
+                    model=model,
+                    contents=contents,
+                    config=config,
+                )
+
+            except Exception as e:
+                last_error = e
+                message = str(e).lower()
+
+                print(f"API attempt failed: {e}")
+
+                # The cache expired or was deleted: retry once without it.
+                if cache_name and "cachedcontent" in message.replace(" ", ""):
+                    print("Cache unavailable, retrying without it.")
+                    return call_model(client, model, prompt, contents, None)
+
+                # This model rejected the thinking setting: try the next config.
+                if "thinking" in message:
+                    break
+
+                if attempt < MAX_ATTEMPTS:
+                    time.sleep(RETRY_DELAY_SECONDS * attempt)
+        else:
+            raise RuntimeError(
+                f"Gemini API failed after {MAX_ATTEMPTS} attempts: {last_error}"
             )
 
-        data = json.loads(cleaned[start:end + 1])
+    raise RuntimeError(f"Gemini API failed: {last_error}")
 
-    if not isinstance(data, dict):
-        raise ValueError("Expected a JSON object containing the extracted fields.")
+
+# ============================================================
+# VALUES-ONLY REPLY -> THE JSON THE APP EXPECTS
+#
+# PF|<page no from>
+# PD|<presentation date>
+# RD|<registration date>
+# E|<name>|<relation>
+# C|<name>|<relation>
+# P|<thana name>|<khata no>|<khasra no>
+#
+# The saved JSON keeps the structure extract.py and Returned.py read.
+# Thana No is not asked for, so its slot is left empty and the app
+# looks it up from the Thana Name.
+# ============================================================
+
+EMPTY_WORDS = {"null", "none", "n/a", "na", "nil", "-"}
+
+
+def _clean(value):
+    text = (value or "").strip().strip('"').strip()
+    return "" if text.lower() in EMPTY_WORDS else text
+
+
+def parse_response(response_text):
+    text = (response_text or "").strip()
+
+    if not text:
+        raise ValueError("Gemini returned an empty response")
+
+    text = text.replace("```", "")
+
+    data = {
+        "Presentation Date": "",
+        "Registration Date": "",
+        "Page No. From": "",
+        "Parties": [],
+        "Properties": [],
+    }
+
+    recognised = 0
+
+    for raw_line in text.splitlines():
+        line = raw_line.strip()
+
+        if "|" not in line:
+            continue
+
+        tag, *values = [part.strip() for part in line.split("|")]
+        tag = tag.upper()
+        first = _clean(values[0]) if values else ""
+
+        if tag == "PF":
+            match = re.search(r"\d+", first)
+            data["Page No. From"] = match.group(0) if match else ""
+
+        elif tag == "PD":
+            data["Presentation Date"] = first
+
+        elif tag == "RD":
+            data["Registration Date"] = first
+
+        elif tag in ("E", "C"):
+            values = (values + ["", ""])[:2]
+            data["Parties"].append([
+                "Executant" if tag == "E" else "Claimant",
+                _clean(values[0]),
+                _clean(values[1]),
+            ])
+
+        elif tag == "P":
+            if data["Properties"]:
+                print("WARNING: extra P line ignored (one property expected)")
+                continue
+
+            values = (values + ["", "", ""])[:3]
+            data["Properties"].append([
+                _clean(values[0]),
+                "",
+                _clean(values[1]),
+                _clean(values[2]),
+            ])
+
+        else:
+            continue
+
+        recognised += 1
+
+    if recognised == 0:
+        raise ValueError(f"No recognised lines in the reply: {text[:200]!r}")
 
     return data
 
 
-def _clean_value(value):
-    """String or None. Placeholder text counts as None so it can never reach the portal."""
-    if value is None:
+# ============================================================
+# TOKEN USAGE AND COST
+# ============================================================
+
+def get_usage(response):
+    usage = getattr(response, "usage_metadata", None)
+
+    def field(name):
+        return (getattr(usage, name, 0) or 0) if usage is not None else 0
+
+    input_tokens = field("prompt_token_count")
+    cached_tokens = field("cached_content_token_count")
+    output_tokens = field("candidates_token_count")
+    thinking_tokens = field("thoughts_token_count")
+    total_tokens = field("total_token_count")
+
+    if total_tokens == 0:
+        total_tokens = input_tokens + output_tokens + thinking_tokens
+
+    return {
+        "input_tokens": input_tokens,
+        "cached_tokens": cached_tokens,
+        "output_tokens": output_tokens,
+        "thinking_tokens": thinking_tokens,
+        "billable_output_tokens": output_tokens + thinking_tokens,
+        "total_tokens": total_tokens,
+    }
+
+
+def calculate_cost(model, usage):
+    prices = MODEL_PRICES.get(model)
+
+    if prices is None:
         return None
-    if isinstance(value, (dict, list)):
-        return json.dumps(value, ensure_ascii=False)
-    text = str(value).strip()
-    low = text.lower()
-    if not text or low in NOT_A_VALUE_EXACT or low.startswith(NOT_A_VALUE_PREFIX):
-        return None
-    return text
 
+    fresh_input = usage["input_tokens"] - usage["cached_tokens"]
 
-def _pick(source, fields):
-    """Copy the wanted fields from a dict, matching keys case-insensitively. Missing -> None."""
-    lookup = {str(k).strip().casefold(): k for k in source}
-    out = {}
-    for field in fields:
-        key = lookup.get(field.casefold())
-        out[field] = _clean_value(source[key]) if key is not None else None
-    return out
+    input_usd = (
+        fresh_input * prices["input"]
+        + usage["cached_tokens"] * prices["input"] * CACHE_READ_FACTOR
+    ) / 1_000_000
 
+    output_usd = usage["billable_output_tokens"] * prices["output"] / 1_000_000
 
-def _pick_list(data, name, fields):
-    lookup = {str(k).strip().casefold(): k for k in data}
-    key = lookup.get(name.casefold())
-    items = data[key] if key is not None else None
-    if not isinstance(items, list):
-        return []
-    return [_pick(item, fields) for item in items if isinstance(item, dict)]
+    total_usd = input_usd + output_usd
 
-
-def normalize_data(data):
-    """Return the fixed structure. Missing values stay None; nothing is fabricated."""
-    result = _pick(data, TOP_FIELDS)
-    result["Parties"] = _pick_list(data, "Parties", PARTY_FIELDS)
-    result["Properties"] = _pick_list(data, "Properties", PROPERTY_FIELDS)
-    return result
-
-
-def is_retryable_error(exc):
-    """Identify transient API errors that are safe to retry."""
-
-    status_code = getattr(exc, "code", None)
-
-    try:
-        status_code = int(status_code)
-    except (TypeError, ValueError):
-        return False
-
-    return status_code in RETRYABLE_STATUS_CODES
+    return {
+        "input_usd": input_usd,
+        "output_usd": output_usd,
+        "total_usd": total_usd,
+        "total_inr": total_usd * USD_TO_INR,
+    }
 
 
 # ============================================================
-# GEMINI API
+# SAVE
 # ============================================================
 
-def generate_with_retry(client, model_name, uploaded_file, prompt):
-    """Retry temporary Gemini failures with exponential backoff."""
+def save_json(path, data):
+    path.parent.mkdir(parents=True, exist_ok=True)
 
-    for attempt in range(1, MAX_ATTEMPTS + 1):
-        try:
-            return client.models.generate_content(
-                model=model_name,
-                contents=[uploaded_file, prompt],
-                config=types.GenerateContentConfig(
-                    response_mime_type="application/json",
-                    temperature=0.1,
-                ),
-            )
-
-        except errors.APIError as exc:
-            if not is_retryable_error(exc):
-                raise
-
-            status_code = getattr(exc, "code", "unknown")
-
-            if attempt == MAX_ATTEMPTS:
-                log(f"Model {model_name} failed after {MAX_ATTEMPTS} attempts (HTTP {status_code}).")
-                raise
-
-            wait_seconds = 2 ** attempt
-            log(
-                f"Temporary API error {status_code} for {model_name}. "
-                f"Retrying in {wait_seconds}s (attempt {attempt + 1}/{MAX_ATTEMPTS})..."
-            )
-            time.sleep(wait_seconds)
+    with open(path, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-def analyze_pdf(client, pdf_path, prompt):
-    """Upload the PDF and try the configured model list."""
+def append_usage_csv(output_dir, model, result):
+    usage_csv = output_dir / f"{model}_usage.csv"
+    is_new = not usage_csv.exists() or usage_csv.stat().st_size == 0
 
-    model_candidates = list(dict.fromkeys([PRIMARY_MODEL] + FALLBACK_MODELS))
+    usage = result["usage"]
+    cost = result["cost"] or {}
 
-    log(f"Uploading PDF: {pdf_path.name}")
+    with open(usage_csv, "a", newline="", encoding="utf-8-sig" if is_new else "utf-8") as f:
+        writer = csv.writer(f)
 
-    uploaded_file = client.files.upload(
-        file=str(pdf_path),
-        config=types.UploadFileConfig(
-            mime_type="application/pdf",
-            display_name=pdf_path.name,
-        ),
+        if is_new:
+            writer.writerow([
+                "PDF", "Model", "Input Tokens", "Cached Tokens",
+                "Output Tokens", "Thinking Tokens", "Total Tokens",
+                "Final Cost USD", "Final Cost INR", "Time Seconds",
+            ])
+
+        writer.writerow([
+            result["pdf"], result["model"],
+            usage["input_tokens"], usage["cached_tokens"],
+            usage["output_tokens"], usage["thinking_tokens"],
+            usage["total_tokens"],
+            cost.get("total_usd", ""), cost.get("total_inr", ""),
+            round(result["elapsed_seconds"], 2),
+        ])
+
+    return usage_csv
+
+
+# ============================================================
+# PROCESS ONE PDF
+# ============================================================
+
+def process_pdf(client, pdf_path, model, output_dir, dpi, cache_name):
+    pdf_path = Path(pdf_path)
+
+    print("\n" + "=" * 70)
+    print(f"PDF   : {pdf_path.name}")
+    print(f"MODEL : {model}")
+    print("=" * 70)
+
+    start_time = time.time()
+
+    prompt = load_prompt()
+    images, page_count = prepare_pdf_images(pdf_path, dpi)
+
+    print(f"Pages in PDF    : {page_count}")
+    print(f"Images prepared : {len(images)}")
+
+    response = call_model(
+        client=client,
+        model=model,
+        prompt=prompt,
+        contents=build_contents(images),
+        cache_name=cache_name,
     )
 
-    log("PDF uploaded successfully.")
+    extracted_data = parse_response(response.text)
 
-    errors_seen = []
+    usage = get_usage(response)
+    cost = calculate_cost(model, usage)
 
-    try:
-        for model_name in model_candidates:
-            log(f"Analyzing with model: {model_name}")
+    deed_output_path = pdf_path.parent / f"{pdf_path.stem}_extracted.json"
+    central_output_path = output_dir / model / f"{pdf_path.stem}.json"
 
-            try:
-                response = generate_with_retry(
-                    client=client,
-                    model_name=model_name,
-                    uploaded_file=uploaded_file,
-                    prompt=prompt,
-                )
+    save_json(deed_output_path, extracted_data)
+    save_json(central_output_path, extracted_data)
 
-                response_text = getattr(response, "text", None)
+    elapsed = time.time() - start_time
 
-                if not response_text:
-                    raise ValueError(f"Model {model_name} returned no text.")
+    print("\nEXTRACTED DATA:")
+    print(json.dumps(extracted_data, indent=2, ensure_ascii=False))
 
-                log(f"Extraction succeeded using {model_name}.")
-                return response_text
+    print("\nTOKEN USAGE")
+    print("-" * 40)
+    print(f"Input tokens    : {usage['input_tokens']:,}")
+    print(f"Cached tokens   : {usage['cached_tokens']:,}")
+    print(f"Output tokens   : {usage['output_tokens']:,}")
+    print(f"Thinking tokens : {usage['thinking_tokens']:,}")
 
-            except Exception as exc:
-                errors_seen.append((model_name, exc))
-                log(f"Model {model_name} failed: {type(exc).__name__}: {exc}")
-                continue
+    if cost:
+        print(f"Cost USD        : {cost['total_usd']:.8f}")
+        print(f"Cost INR        : {cost['total_inr']:.6f}")
+    else:
+        print("Pricing not configured for this model.")
 
-        summary = "\n".join(
-            f"- {model}: {type(exc).__name__}: {exc}"
-            for model, exc in errors_seen
-        )
+    print(f"\nTime taken  : {elapsed:.2f} seconds")
+    print(f"Saved deed  : {deed_output_path}")
+    print(f"Saved output: {central_output_path}")
 
-        raise RuntimeError(
-            "All configured Gemini models failed.\n"
-            "Check model availability, API quota, and network access.\n"
-            f"{summary}"
-        )
-
-    finally:
-        try:
-            client.files.delete(name=uploaded_file.name)
-            log("Temporary Gemini upload cleaned up.")
-        except Exception as exc:
-            log(f"Note: temporary upload cleanup did not complete: {exc}")
+    return {
+        "pdf": pdf_path.name,
+        "model": model,
+        "data": extracted_data,
+        "usage": usage,
+        "cost": cost,
+        "elapsed_seconds": elapsed,
+    }
 
 
 # ============================================================
@@ -339,48 +566,90 @@ def analyze_pdf(client, pdf_path, prompt):
 # ============================================================
 
 def main():
-    if not API_KEY or API_KEY == "paste_your_api_key_here":
-        raise ValueError(
-            "GEMINI_API_KEY is missing.\n"
-            "Set it in your local .env file. "
-            "Do not share your API key."
+    parser = argparse.ArgumentParser(description="PDF deed extraction using Gemini")
+
+    parser.add_argument("--input", default=str(DOWNLOADS_DIR),
+                        help="PDF file or directory containing PDFs")
+    parser.add_argument("--model", default=DEFAULT_MODEL, help="Gemini model ID")
+    parser.add_argument("--dpi", type=int, default=DEFAULT_DPI, help="PDF rendering DPI")
+    parser.add_argument("--no-cache", action="store_true", help="Disable the prompt cache")
+    parser.add_argument("--cache-hours", type=float, default=1.0,
+                        help="Cache lifetime. Extended on every run.")
+    parser.add_argument("--delete-cache", action="store_true",
+                        help="Delete the prompt cache after processing")
+
+    args = parser.parse_args()
+
+    if not API_KEY:
+        raise RuntimeError("GEMINI_API_KEY missing from .env")
+
+    input_path = Path(args.input)
+
+    if not input_path.is_absolute():
+        input_path = (Path.cwd() / input_path).resolve()
+
+    if not input_path.exists():
+        raise FileNotFoundError(f"Input path not found: {input_path}")
+
+    if input_path.is_file() and input_path.suffix.lower() == ".pdf":
+        pdfs = [input_path]
+    elif input_path.is_dir():
+        pdfs = sorted(
+            p for p in input_path.rglob("*")
+            if p.is_file() and p.suffix.lower() == ".pdf"
         )
+    else:
+        pdfs = []
 
-    pdf_argument = sys.argv[1] if len(sys.argv) > 1 else None
-    pdf_path = find_pdf(pdf_argument)
-
-    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
-
-    base_prompt = load_prompt()
-    prompt = build_prompt(base_prompt, pdf_path)
+    if not pdfs:
+        print(f"No PDFs found in {input_path}")
+        return
 
     client = genai.Client(api_key=API_KEY)
 
-    response_text = analyze_pdf(client=client, pdf_path=pdf_path, prompt=prompt)
+    OUTPUT_DIR.mkdir(parents=True, exist_ok=True)
 
-    extracted_data = extract_json(response_text)
-    normalized_data = normalize_data(extracted_data)
+    print(f"\nFound {len(pdfs)} PDF(s)")
+    print(f"Model      : {args.model}")
+    print(f"Cache      : {'Disabled' if args.no_cache else 'Enabled'}")
 
-    output_path = OUTPUT_DIR / f"{pdf_path.stem}_extracted.json"
+    cache_name = None
 
-    output_path.write_text(
-        json.dumps(normalized_data, ensure_ascii=False, indent=2) + "\n",
-        encoding="utf-8",
-    )
+    if not args.no_cache:
+        cache_name = get_or_create_cache(
+            client, args.model, load_prompt(), args.cache_hours
+        )
 
-    log("\nExtraction complete.")
-    log(f"Output saved to: {output_path}")
+    failures = 0
+    total_inr = 0.0
 
-    log("\nExtracted fields:")
-    print(json.dumps(normalized_data, ensure_ascii=False, indent=2))
+    try:
+        for pdf in pdfs:
+            try:
+                result = process_pdf(client, pdf, args.model, OUTPUT_DIR, args.dpi, cache_name)
+                append_usage_csv(OUTPUT_DIR, args.model, result)
+                total_inr += (result["cost"] or {}).get("total_inr", 0)
+
+            except Exception as e:
+                failures += 1
+                print(f"\nFAILED: {pdf.name}")
+                print(f"Error: {e}")
+
+    finally:
+        if args.delete_cache:
+            delete_cache(client, cache_name)
+
+    print("\n" + "=" * 70)
+    print("PROCESSING COMPLETED")
+    print("=" * 70)
+    print(f"Succeeded : {len(pdfs) - failures}")
+    print(f"Failed    : {failures}")
+    print(f"Total INR : {total_inr:.6f}")
+
+    # extract.py reads the exit code, so a failed deed must not exit 0.
+    if failures:
+        raise SystemExit(1)
 
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        log("\nOperation cancelled by user.")
-        sys.exit(130)
-    except Exception as exc:
-        log(f"\nERROR: {type(exc).__name__}: {exc}")
-        sys.exit(1)
+    main()
