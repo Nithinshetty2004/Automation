@@ -1,9 +1,9 @@
 import os
 import time
+import thana
 from pathlib import Path
 from playwright.sync_api import TimeoutError as PWTimeout
 from playwright.sync_api import sync_playwright
-
 from browser import launch_or_attach
 from config import OUT_DIR
 from deed import STATUS_NAME, download_next, process_volume, reload_list
@@ -31,11 +31,24 @@ MAX_RELOGINS = int(os.getenv("MAX_RELOGINS", "5"))
 VOLUME_ATTEMPTS = max(1, int(os.getenv("VOLUME_ATTEMPTS", "3")))  # tries per volume for portal/navigation trouble
 NOT_FOUND_ATTEMPTS = max(1, int(os.getenv("NOT_FOUND_ATTEMPTS", "2")))  # searches before "no matching row" is final
 ON_VOLUME_FAILURE = os.getenv("ON_VOLUME_FAILURE", "stop").strip().lower()  # stop | continue
+ONLY_VOLUMES = [s.strip() for s in os.getenv("ONLY_VOLUMES", "").split(",") if s.strip()]
+bad = [s for s in ONLY_VOLUMES if not s.isdigit()]
+if bad:
+    raise SystemExit(f"ONLY_VOLUMES must be volume numbers separated by commas, for example '1,5,12'. Bad values: {bad}")
+ONLY_VOLUMES = [str(int(s)) for s in ONLY_VOLUMES]  # '01' -> '1'
 if ON_VOLUME_FAILURE not in ("stop", "continue"):
     raise SystemExit("ON_VOLUME_FAILURE must be 'stop' or 'continue'")
+
 LIST_ORDER = tuple(s for s in (x.strip().upper() for x in os.getenv("LIST_ORDER", "P,I").split(",")) if s in ("P", "I"))
 if not LIST_ORDER:
     raise SystemExit("LIST_ORDER must contain P and/or I, for example 'P,I' or 'I'")
+
+def _wanted(record):
+    """True when ONLY_VOLUMES is unset, or the record's volume number is listed."""
+    if not ONLY_VOLUMES:
+        return True
+    vol = str(record["volume_no"]).strip()
+    return (str(int(vol)) if vol.isdigit() else vol) in ONLY_VOLUMES
 
 
 class VolumeRetry(RuntimeError):
@@ -120,18 +133,39 @@ def _pdf_pages(folder, meta):
 
 
 def _resolve_pages(state, sig, deed, folder, meta, values):
-    """Use Gemini's pages unless they overlap a range already used in this volume."""
-    start, end = int(values["page_from"]), int(values["page_to"])
+    """Page No. From comes from the deed when it was read and is free. Page No. To is From plus
+    the PDF page count minus one. If the read value is missing or overlaps a used range, the
+    range is assigned consecutively after the used ranges, as before."""
+    page_count = _pdf_pages(folder, meta)
     used = state.used_page_ranges(sig, exclude=deed)
-    log(f"Pages: deed {deed} read as {start}-{end}; ranges already used in this volume: {used}")
-    if not any(start <= b and a <= end for a, b in used):
-        log(f"Pages: no overlap, using {start}-{end}")
-        return values, None
-    new_start = max(b for _, b in used) + 1
-    new_end = new_start + _pdf_pages(folder, meta) - 1
-    note = f"pages shifted {start}-{end} -> {new_start}-{new_end} (overlap)"
-    log(f"Pages: {note}")
-    return {**values, "page_from": str(new_start), "page_to": str(new_end)}, note
+    next_free = max((end for _, end in used), default=0) + 1
+    start = next_free
+    note = (
+        f"pages assigned {start}-{start + page_count - 1} from {page_count} PDF pages "
+        "after previously assigned ranges"
+        if used
+        else None
+    )
+
+    hint = str(values.get("page_from_hint") or "").strip()
+    if hint.isdigit() and int(hint) >= 1:
+        hint_start = int(hint)
+        hint_end = hint_start + page_count - 1
+        overlaps = [(a, b) for a, b in used if hint_start <= b and a <= hint_end]
+        if overlaps:
+            note = (
+                f"Page No. From {hint_start} read from the deed overlaps used range(s) {overlaps}; "
+                f"assigned {start}-{start + page_count - 1} after previously assigned ranges"
+            )
+        else:
+            start = hint_start
+            note = f"Page No. From {hint_start} read from the deed; Page No. To from {page_count} PDF pages"
+    elif hint:
+        note = f"Page No. From {hint!r} read from the deed is not a number; assigned consecutively"
+
+    end = start + page_count - 1
+    log(f"Pages: PDF has {page_count} pages; used ranges: {used}; read From: {hint or 'none'}; assigning {start}-{end}")
+    return {**values, "page_from": str(start), "page_to": str(end)}, note
 
 
 def _summary(deed, list_status, pages, notes, outcome, started):
@@ -305,6 +339,12 @@ def run():
     OUT_DIR.mkdir(exist_ok=True)
     state = State(OUT_DIR / "state.json")
     records = prepare_worklist()
+    thana.load()
+    if ONLY_VOLUMES:
+        records = [r for r in records if _wanted(r)]
+        log(f"ONLY_VOLUMES={','.join(ONLY_VOLUMES)}: {len(records)} worklist record(s) selected")
+        if not records:
+            raise SystemExit("ONLY_VOLUMES matched no worklist record. Check the volume numbers.")
     counters = Counters()
     relogins = 0
     log(f"Run settings: AUTO_SUBMIT={AUTO_SUBMIT} ALLOW_REVIEW_SUBMIT={ALLOW_REVIEW_SUBMIT} "

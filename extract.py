@@ -1,23 +1,21 @@
 import json
 import os
-import re
 import shutil
 import subprocess
 import sys
 import time
 from datetime import datetime
 from pathlib import Path
-
 from util import log
-
+LEGACY_FALLBACK = os.getenv("LEGACY_JSON_FALLBACK", "true").strip().lower() in ("1", "true", "yes")
 PROCESSOR_DIR = Path(os.getenv("PROCESSOR_DIR", "data_process")).resolve()
 RETURNED_DIR = Path(os.getenv("RETURNED_DIR", "returned_data"))
 TIMEOUT_S = int(os.getenv("PROCESSOR_TIMEOUT_SECONDS", "300"))
 ATTEMPTS = int(os.getenv("PROCESSOR_ATTEMPTS", "2"))
 
-TOP_FIELDS = ["Presentation Date", "Registration Date", "Page No. From", "Page No. To"]
-PARTY_FIELDS = ["Party Type", "Name", "Relation Name"]
-PROPERTY_FIELDS = ["Circle", "Village/Thana", "Khata No", "Khasra No"]
+TOP_FIELDS = ["Presentation Date", "Registration Date"]
+PARTY_FIELDS = ("Party Type", "Name", "Relation Name")
+PROPERTY_FIELDS = ("Thana Name", "Thana No", "Khata No", "Khasra No")
 
 NOT_A_VALUE_PREFIX = ("unclear", "unreadable", "illegible", "not found", "not available")
 NOT_A_VALUE_EXACT = {"n/a", "na", "null", "none", "-"}
@@ -56,6 +54,22 @@ def _date(text):
         return None
 
 
+def decode_records(data, field_name, fields):
+    """Convert the processor's positional rows to named records for internal use."""
+    rows = data.get(field_name)
+    if not isinstance(rows, list) or not rows:
+        raise ValueError(f"{field_name}: missing or empty")
+
+    records = []
+    for index, row in enumerate(rows, 1):
+        if not isinstance(row, list) or len(row) != len(fields):
+            raise ValueError(
+                f"{field_name} {index}: expected an array of {len(fields)} values"
+            )
+        records.append(dict(zip(fields, row)))
+    return records
+
+
 def validate(data, meta=None):
     """Return a list of problems. An empty list means the data is safe to fill."""
     if not isinstance(data, dict):
@@ -72,53 +86,50 @@ def validate(data, meta=None):
     for f, d in (("Presentation Date", presented), ("Registration Date", registered)):
         if top[f] is not None and d is None:
             problems.append(f"{f}: not dd-mm-yyyy ({top[f]!r})")
-    if presented and registered and registered < presented:
-        problems.append("Registration Date is before Presentation Date")
     if presented and meta and str(presented.year) != str(meta.get("presentation_year")):
         problems.append(f"Presentation year {presented.year} differs from the portal's {meta.get('presentation_year')}")
 
-    p_from, p_to = top["Page No. From"], top["Page No. To"]
-    for f, v in (("Page No. From", p_from), ("Page No. To", p_to)):
-        if v is not None and not v.isdigit():
-            problems.append(f"{f}: not a number ({v!r})")
-    if p_from and p_to and p_from.isdigit() and p_to.isdigit() and int(p_to) < int(p_from):
-        problems.append("Page No. To is smaller than Page No. From")
+    try:
+        parties = decode_records(data, "Parties", PARTY_FIELDS)
+    except ValueError as exc:
+        problems.append(str(exc))
+        parties = []
 
-    parties = data.get("Parties")
-    if not isinstance(parties, list) or not parties:
-        problems.append("Parties: missing or empty")
-    else:
-        executants = claimants = 0
-        for i, party in enumerate(parties, 1):
-            if not isinstance(party, dict):
-                problems.append(f"Party {i}: not an object")
-                continue
-            for f in PARTY_FIELDS:
-                if _text(party.get(f)) is None:
-                    problems.append(f"Party {i} {f}: missing or unreadable")
-            kind = (_text(party.get("Party Type")) or "").casefold()
-            if kind == "executant":
-                executants += 1
-            elif kind == "claimant":
-                claimants += 1
-            elif kind:
-                problems.append(f"Party {i}: Party Type must be Executant or Claimant, got {party.get('Party Type')!r}")
-        if executants != 1:
-            problems.append(f"Parties: expected exactly 1 Executant, found {executants}")
-        if claimants < 1:
-            problems.append("Parties: no Claimant found")
+    executants = claimants = 0
+    for i, party in enumerate(parties, 1):
+        for field in ("Party Type", "Name"):
+            if _text(party[field]) is None:
+                problems.append(f"Party {i} {field}: missing or unreadable")
+        kind = (_text(party["Party Type"]) or "").casefold()
+        if kind == "executant":
+            executants += 1
+        elif kind == "claimant":
+            claimants += 1
+        elif kind:
+            problems.append(
+                f"Party {i}: Party Type must be Executant or Claimant, "
+                f"got {party['Party Type']!r}"
+            )
+    if parties and executants < 1:
+        problems.append("Parties: no Executant found")
+    if parties and claimants < 1:
+        problems.append("Parties: no Claimant found")
 
-    props = data.get("Properties")
-    if not isinstance(props, list) or not props:
-        problems.append("Properties: missing or empty")
-    else:
-        for i, prop in enumerate(props, 1):
-            if not isinstance(prop, dict):
-                problems.append(f"Property {i}: not an object")
-                continue
-            for f in PROPERTY_FIELDS:
-                if _text(prop.get(f)) is None:
-                    problems.append(f"Property {i} {f}: missing or unreadable")
+    try:
+        properties = decode_records(data, "Properties", PROPERTY_FIELDS)
+    except ValueError as exc:
+        problems.append(str(exc))
+        properties = []
+
+    for i, prop in enumerate(properties, 1):
+        for field in ("Khata No", "Khasra No"):
+            if _text(prop[field]) is None:
+                problems.append(f"Property {i} {field}: missing or unreadable")
+        if _text(prop["Thana Name"]) is None and _text(prop["Thana No"]) is None:
+            problems.append(f"Property {i} Thana Name or Thana No: missing or unreadable")
+        thana_text = _text(prop["Thana No"])
+        if thana_text is not None and not thana_text.split("/")[0].strip().isdigit():
+            problems.append(f"Property {i} Thana No: not a number ({thana_text!r})")
     return problems
 
 
@@ -131,9 +142,29 @@ def _check_file(path, meta):
     if problems:
         raise ExtractionError(f"{path.name} failed validation: " + "; ".join(problems))
 
+def extracted_path(folder, meta):
+    """The JSON lives in the deed's own folder."""
+    return Path(folder) / f"{meta['volume_id']}_{meta['doct_no']}_{meta['presentation_year']}_extracted.json"
+
+
+def adopt_legacy(target):
+    """If the deed folder has no JSON, copy a non-empty one from returned_data or data_process/output."""
+    if target.exists():
+        return True
+    if not LEGACY_FALLBACK:
+        return False
+    for src_dir in (RETURNED_DIR, PROCESSOR_DIR / "output"):
+        src = src_dir / target.name
+        if src.exists() and src.stat().st_size > 0:
+            tmp = target.with_suffix(".json.tmp")
+            shutil.copyfile(src, tmp)
+            os.replace(tmp, target)
+            log(f"JSON: copied {src} into the deed folder {target.parent}")
+            return True
+    return False
 
 def ensure_extracted(folder):
-    """Return returned_data/<volume>_<deed>_<year>_extracted.json, running the processor if needed.
+    """Return the deed folder's extracted JSON, running the processor if it is missing.
 
     Every returned file has passed validate(), including hand-edited ones.
     """
@@ -141,10 +172,10 @@ def ensure_extracted(folder):
     meta = json.loads((folder / "meta.json").read_text(encoding="utf-8"))
     stem = f"{meta['volume_id']}_{meta['doct_no']}_{meta['presentation_year']}"
 
-    target = RETURNED_DIR / f"{stem}_extracted.json"
-    if target.exists():
+    target = extracted_path(folder, meta)
+    if adopt_legacy(target):
         log(f"Extraction result already present: {target}")
-        _check_file(target, meta)  # delete the file to force a fresh extraction
+        _check_file(target, meta)
         return target
 
     pdf = folder / f"{stem}.pdf"
@@ -154,38 +185,28 @@ def ensure_extracted(folder):
     if not script.exists():
         raise ExtractionError(f"Processor not found: {script}")
 
-    raw_out = PROCESSOR_DIR / "output" / f"{stem}_extracted.json"
     env = {**os.environ, "PYTHONUTF8": "1", "PYTHONIOENCODING": "utf-8"}
     last_error = "unknown"
 
     for attempt in range(1, ATTEMPTS + 1):
-        raw_out.unlink(missing_ok=True)
+        target.unlink(missing_ok=True)
         log(f"Extracting {pdf.name} (attempt {attempt}/{ATTEMPTS})")
         try:
             result = subprocess.run(
-                [_python(), str(script), str(pdf.resolve())],
-                cwd=PROCESSOR_DIR,
-                env=env,
-                capture_output=True,
-                text=True,
-                encoding="utf-8",
-                errors="replace",
-                timeout=TIMEOUT_S,
+                [_python(), str(script), "--input", str(pdf.resolve())],
+                cwd=PROCESSOR_DIR, env=env, capture_output=True, text=True,
+                encoding="utf-8", errors="replace", timeout=TIMEOUT_S,
             )
         except subprocess.TimeoutExpired:
             last_error = f"processor exceeded {TIMEOUT_S}s"
         else:
-            if result.returncode == 0 and raw_out.exists():
+            if result.returncode == 0 and target.exists():
                 try:
-                    _check_file(raw_out, meta)
+                    _check_file(target, meta)
                 except ExtractionError as exc:
                     last_error = str(exc)
                 else:
-                    RETURNED_DIR.mkdir(parents=True, exist_ok=True)
-                    tmp = target.with_suffix(".json.tmp")
-                    shutil.copyfile(raw_out, tmp)
-                    os.replace(tmp, target)  # atomic: a half-written file is never read
-                    log(f"Extraction saved: {target}")
+                    log(f"Extraction saved in the deed folder: {target}")
                     return target
             else:
                 tail = "\n".join((result.stdout + result.stderr).strip().splitlines()[-3:])

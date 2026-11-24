@@ -1,15 +1,220 @@
-numericals are in hindi or urdu not english needs to be translated 
-after submit button it will redirect to same no need to go back again to meta data creation date 
-thana no is in hindi numerical using that we can get circle and village name 
-Portal alert: The Registration Date must be within the same year as the Volume Year.
-[00:16:40] Fill: starting deed 5971 (clear existing rows: False)
-[00:16:40] Filling Index tab...
-[00:16:42] Presentation Date: 29-07-1987
-[00:16:42] Registration Date: 24-11-1987
-[00:16:44] Instrument Type: Sale / Conveyance
-[00:16:45] Instrument Sub-Type: Sale
-[00:16:45] Page No. From: 427
-[00:16:45] Page No. To: 430
-[00:16:47] Portal alert: The Registration Date must be within the same year as the Volume Year.
-[00:16:55] Index Save: portal alert: The Registration Date must be within the same year as the Volume Year.
-[00:16:55] Deed 5971 failed: RuntimeError("Index Save: no 'saved successfully' alert was seen, so the save is unconfirmed")
+testing for thana no implementation is pending
+page number calculations using only the first page number
+
+
+
+
+
+
+
+"""
+Crop-only Bihar deed image preparation script.
+No Gemini or other AI/API calls are made.
+
+Output:
+    crops/<pdf_filename>/
+        dates_presentation.png
+        dates_registration.png
+        detail.png
+        header_last_page.png
+        crop_manifest.txt
+"""
+
+import argparse
+import io
+from pathlib import Path
+
+import pymupdf
+from PIL import Image, ImageOps
+
+
+def load_pages(pdf_path: Path, dpi: int = 300):
+    """Render every PDF page as a PIL RGB image."""
+    doc = pymupdf.open(pdf_path)
+    pages = []
+
+    try:
+        for page in doc:
+            pix = page.get_pixmap(dpi=dpi, alpha=False)
+            image = Image.open(
+                io.BytesIO(pix.tobytes("png"))
+            ).convert("RGB")
+            pages.append(image)
+    finally:
+        doc.close()
+
+    return pages
+
+
+def crop_relative(image, x0, y0, x1, y1, scale=2):
+    """Crop using relative page coordinates and optionally upscale."""
+    width, height = image.size
+
+    box = (
+        int(x0 * width),
+        int(y0 * height),
+        int(x1 * width),
+        int(y1 * height),
+    )
+
+    result = image.crop(box)
+
+    if scale > 1:
+        result = result.resize(
+            (result.width * scale, result.height * scale),
+            Image.Resampling.LANCZOS,
+        )
+
+    return ImageOps.autocontrast(result, cutoff=1)
+
+
+def save_crop(image, output_path, description, manifest):
+    image.save(output_path, format="PNG")
+    manifest.append(
+        f"{output_path.name}\n  {description}\n"
+    )
+
+
+def main():
+    parser = argparse.ArgumentParser(
+        description="Create deed page crops without AI/API calls."
+    )
+
+    parser.add_argument("pdf", help="Input deed PDF path")
+
+    parser.add_argument(
+        "--debug-dir",
+        default="crops",
+        help="Parent output folder",
+    )
+
+    parser.add_argument(
+        "--scale",
+        type=int,
+        default=2,
+        help="Crop upscaling factor (default: 2)",
+    )
+
+    parser.add_argument(
+        "--dpi",
+        type=int,
+        default=300,
+        help="PDF rendering DPI (default: 300)",
+    )
+
+    args = parser.parse_args()
+
+    pdf_path = Path(args.pdf)
+
+    if not pdf_path.is_file():
+        parser.error(f"PDF not found: {pdf_path}")
+
+    if args.scale < 1:
+        parser.error("--scale must be 1 or greater")
+
+    if args.dpi < 1:
+        parser.error("--dpi must be greater than 0")
+
+    # Create a separate folder using the PDF filename.
+    output_dir = Path(args.debug_dir) / pdf_path.stem
+    output_dir.mkdir(parents=True, exist_ok=True)
+
+    print(f"Reading PDF: {pdf_path}")
+
+    pages = load_pages(pdf_path, dpi=args.dpi)
+    page_count = len(pages)
+
+    if page_count == 0:
+        raise RuntimeError("The PDF contains no pages.")
+
+    print(f"Loaded {page_count} page(s).")
+
+    manifest = [
+        f"Source PDF: {pdf_path}",
+        f"Total pages: {page_count}",
+        f"Output folder: {output_dir.resolve()}",
+        "",
+        "CROP CONTENT MAP",
+        "================",
+        "",
+    ]
+
+    # 1. Presentation date: unchanged crop from page 1.
+    presentation_crop = crop_relative(
+        pages[0],
+        0.00, 0.10,
+        0.25, 1.00,
+        scale=args.scale,
+    )
+
+    save_crop(
+        presentation_crop,
+        output_dir / "dates_presentation.png",
+        "Page 1 left margin. Presentation date beside प्रस्तुत.",
+        manifest,
+    )
+
+    # 2. Registration date: unchanged crop from the last page.
+    registration_crop = crop_relative(
+        pages[-1],
+        0.00, 0.10,
+        0.25, 1.00,
+        scale=args.scale,
+    )
+
+    save_crop(
+        registration_crop,
+        output_dir / "dates_registration.png",
+        f"Page {page_count} left margin. Registration date near signature/witness lines.",
+        manifest,
+    )
+
+    # 3. Detail: entire first page.
+    detail_crop = crop_relative(
+        pages[0],
+        0.00, 0.00,
+        1.00, 1.00,
+        scale=args.scale,
+    )
+
+    save_crop(
+        detail_crop,
+        output_dir / "detail.png",
+        "Complete first page. Contains deed details and party information.",
+        manifest,
+    )
+
+    # 4. Header: only the last page's top 24%.
+    # Used to identify the final register page number.
+    last_header_crop = crop_relative(
+        pages[-1],
+        0.00, 0.00,
+        1.00, 0.24,
+        scale=args.scale,
+    )
+
+    save_crop(
+        last_header_crop,
+        output_dir / "header_last_page.png",
+        f"Page {page_count} top 24%, full width. "
+        "Used to identify the final handwritten register page number after बही सं०.",
+        manifest,
+    )
+
+    # Save crop information.
+    manifest_path = output_dir / "crop_manifest.txt"
+
+    manifest_path.write_text(
+        "\n".join(manifest),
+        encoding="utf-8",
+    )
+
+    print("\nCrop creation completed.")
+    print(f"Output folder: {output_dir.resolve()}")
+    print(f"Manifest: {manifest_path.resolve()}")
+    print("Total crop images: 4")
+    print("\nNo Gemini/API calls were made.")
+
+
+if __name__ == "__main__":
+    main()

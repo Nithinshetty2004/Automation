@@ -1,0 +1,11 @@
+18:51:18.747 [  0.0s] loading deed.pdf
+Traceback (most recent call last):
+  File "C:\Users\knnit\Music\Project\Automation\testcall.py", line 270, in <module>
+    main()
+  File "C:\Users\knnit\Music\Project\Automation\testcall.py", line 192, in main
+    pages = load_pages(a.pdf); n = len(pages)
+  File "C:\Users\knnit\Music\Project\Automation\testcall.py", line 89, in load_pages
+    doc = fitz.open(path)
+  File "C:\Users\knnit\AppData\Roaming\Python\Python310\site-packages\pymupdf\__init__.py", line 3001, in __init__
+    raise FileNotFoundError(f"no such file: '{filename}'")
+pymupdf.FileNotFoundError: no such file: 'deed.pdf'
